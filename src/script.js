@@ -38,8 +38,8 @@ function printOutMessage(){
         index = (index + 1) % bioTexts.length;
     
         // Call the function again after a delay 1000 milliseconds
-        setTimeout(deleteCharacters, 3000);
-        setTimeout(printNext, 5000);
+        setTimeout(deleteCharacters, 4000);
+        setTimeout(printNext, 6000);
     }
 
     // start loop
