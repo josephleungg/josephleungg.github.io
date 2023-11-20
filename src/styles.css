@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #22092C;
+    color: white;
+    font-family: 'lato', sans-serif;
+    font-size: 20px;
+}
+
+nav{
+    overflow: hidden;
+    font-size: 20px;
+}
+
+nav a{
+    padding: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;
+    color: white;
+}
+
+@keyframes pulse{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); color: #e61c39; }
+    100% { transform: scale(1); color: white; }
+}
+
+nav a:hover{
+    animation: pulse 1s infinite;
+}
+
+#home{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 30px;
+}
+
+.my-name{
+    color: #e61c39;
+    font-weight: bold;
+}
+
+#about-me{
+    height: 100vh;
+}
+
+#about-me-box{
+    font-family: 'Roboto Mono', monospace;
+    text-align: left;
+    padding: 40% 10% 0% 10%;
+    word-wrap: break-word; /* breaking word if too long for the div */
+}
+
+#about-me-box h1{
+    font-size: 30px;
+    font-weight: bold;
+    color: #e61c39;
+}
+
+/* flickering underscore effect */
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.flickering-underscore {
+    display: inline-block;
+    animation: flicker 0.8s infinite; /* Adjust the duration as needed */
+}

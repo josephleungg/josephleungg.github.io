@@ -1,0 +1,4 @@
+background color - #4b4a60
+text color - white
+header text color - #e61c39
+in text color change - #cb374b
