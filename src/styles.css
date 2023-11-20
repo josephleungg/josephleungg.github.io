@@ -7,6 +7,15 @@ body {
     font-size: 20px;
 }
 
+#home{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 30px;
+}
+
 nav{
     overflow: hidden;
     font-size: 20px;
@@ -26,17 +35,24 @@ nav a{
     100% { transform: scale(1); color: white; }
 }
 
-nav a:hover{
+a:hover{
     animation: pulse 1s infinite;
+    text-decoration: underline;
 }
 
-#home{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 30px;
+/* flickering underscore effect */
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.flickering-underscore {
+    display: inline-block;
+    animation: flicker 0.8s infinite; /* Adjust the duration as needed */
 }
 
 .my-name{
@@ -59,19 +75,4 @@ nav a:hover{
     font-size: 30px;
     font-weight: bold;
     color: #e61c39;
-}
-
-/* flickering underscore effect */
-@keyframes flicker {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
-.flickering-underscore {
-    display: inline-block;
-    animation: flicker 0.8s infinite; /* Adjust the duration as needed */
 }
