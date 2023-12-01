@@ -16,30 +16,6 @@ body {
     font-size: 30px;
 }
 
-nav{
-    overflow: hidden;
-    font-size: 20px;
-}
-
-nav a{
-    padding: 5px;
-    text-decoration: none;
-    display: inline-block;
-    margin-right: 20px;
-    color: white;
-}
-
-@keyframes pulse{
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); color: #e61c39; }
-    100% { transform: scale(1); color: white; }
-}
-
-a:hover{
-    animation: pulse 1s infinite;
-    text-decoration: underline;
-}
-
 /* flickering underscore effect */
 @keyframes flicker {
     0%, 100% {
@@ -60,6 +36,60 @@ a:hover{
     font-weight: bold;
 }
 
+/* responsive menu for small displays */
+#menu{
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    text-align: center;
+}
+
+#menu a{
+    /* font-size: 20px; */
+    padding: 5px;
+    text-decoration: none;
+    margin-right: 20px;
+    color: white;
+    position: relative;
+}
+
+@media (min-width: 576px) {
+    /* responsive design for anything above 576px */
+    #menu {
+      display: block;
+      font-size: 20px;
+    }
+
+    /* show animation when hovering */
+    #menu a:hover::after {
+        opacity: 1;
+    }
+    
+    /* arrow animation for hovering menu item */
+    #menu a::after {
+        content: '▼'; /* Unicode arrow character */
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+}
+
+@keyframes pulse{
+    /* red pulsing animation */
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); color: #e61c39; }
+    100% { transform: scale(1); color: white; }
+}
+
+#menu a:hover{
+    /* show pulsing animation when hovering */
+    animation: pulse 1s infinite;
+}
+
+/* about section */
 #about-me{
     height: 100vh;
 }

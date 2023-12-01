@@ -19,45 +19,38 @@
     <!-- stylesheet css -->
     <link rel="stylesheet" href="/src/styles.css">
 
-    <!-- javascript -->
-    <script src="/src/script.js" defer></script>
-
 </head>
 
 <body>
 
-    <div class="container-fluid" id="home">
+    <div class="container-lg" id="home">
         <div class="row">
-            <div class="col-md-12">
-                <p>
-                    Hey, I'm
-                    <span class="my-name">
-                        Joseph
-                    </span>
-                    <span class="flickering-underscore">_</span>
+            <p>
+                Hey, I'm
+                <span class="my-name">
+                    Joseph
+                </span>
+                <span class="flickering-underscore">_</span>
+            </p>
+        </div>
+
+        <div class="row">
+            <div>
+                <p>I'm a 
+                    <span id="bio-text"></span>
                 </p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12">
-                <div>
-                    <p>I'm a 
-                        <span id="bio-text"></span>
-                    </p>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <nav>
-                    <a href="#about-me">About</a>
-                    <a href="">Projects</a>
-                    <a href="https://github.com/josephleungg" target="blank">Github</a>
-                    <a href="https://www.linkedin.com/in/josephleung1/" target="blank">Linkedin</a>
-                </nav>
-            </div>
+            <nav id="menu">
+                <a href="#about-me">About</a>
+                <a href="">Projects</a>
+                <a href="https://github.com/josephleungg" target="blank">Github</a>
+                <a href="https://www.linkedin.com/in/josephleung1/" target="blank">Linkedin</a>
+            </nav>
+
         </div>
     </div>
 
@@ -76,12 +69,17 @@
             </div>
 
             <div class="col-md-6">
+                <div class="image-box">
+
+                </div>
                 <p>placeholder text add images here..</p>
             </div>
 
         </div>
     </div>
 
+    <!-- javascript -->
+    <script src="src/script.js" defer></script>
 </body>
 
 </html>
