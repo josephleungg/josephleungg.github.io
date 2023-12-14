@@ -97,7 +97,7 @@ body {
 #about-me-box{
     font-family: 'Roboto Mono', monospace;
     text-align: left;
-    padding: 40% 10% 0% 10%;
+    padding: 35% 10% 0% 10%;
     word-wrap: break-word; /* breaking word if too long for the div */
 }
 
@@ -106,3 +106,8 @@ body {
     font-weight: bold;
     color: #e61c39;
 }
+
+#projects{
+    height: 100vh;
+}
+
