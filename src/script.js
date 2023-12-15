@@ -47,3 +47,19 @@ function printOutMessage(){
 }
 
 printOutMessage();
+
+function imageHovering(){
+    let hoverImage = document.querySelector('.shoes-img');
+    let secondImage = document.querySelector('.car-img');
+
+    hoverImage.addEventListener('mouseover', function(){
+        secondImage.style.opacity = '0.5';
+    })
+
+    hoverImage.addEventListener('mouseout', function() {
+        // Revert the opacity when not hovering
+        secondImage.style.opacity = '1';
+    });
+}
+
+imageHovering();

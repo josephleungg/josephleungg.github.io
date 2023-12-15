@@ -109,7 +109,6 @@ body {
 
 .image-box{
     padding-top: 25%;
-    display: block;
     position: relative;
 }
 
@@ -123,18 +122,15 @@ body {
 .car-img{
     position: absolute;
     z-index: 1;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .shoes-img{
     position: absolute;
     opacity: 50%;
-    left: 250px;
+    left: 27%;
     z-index: 0;
     transition: opacity 0.3s ease-in-out;
-}
-
-.shoes-img:hover ~ .car-img{
-    opacity: 50%;
 }
 
 .shoes-img:hover{
