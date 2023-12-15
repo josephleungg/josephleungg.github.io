@@ -107,7 +107,37 @@ body {
     color: #e61c39;
 }
 
+.image-box{
+    padding-top: 30%;
+    display: block;
+    position: relative;
+}
+
+.about-images{
+    border-radius: 30px;
+    width: auto;
+    height: 500px;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+}
+
+.car-img{
+    position: absolute;
+    z-index: 1;
+}
+
+.shoes-img{
+    position: absolute;
+    opacity: 50%;
+    left: 250px;
+    z-index: 0;
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.shoes-img:hover{
+    opacity: 100%;
+    z-index: 2;
+}
+
 #projects{
     height: 100vh;
 }
-
