@@ -130,7 +130,11 @@ body {
     opacity: 50%;
     left: 250px;
     z-index: 0;
-    transition: opacity 0.3s ease-in-out; 
+    transition: opacity 0.3s ease-in-out;
+}
+
+.shoes-img:hover ~ .car-img{
+    opacity: 50%;
 }
 
 .shoes-img:hover{
