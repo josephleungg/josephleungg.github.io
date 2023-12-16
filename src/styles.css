@@ -4,7 +4,7 @@ body {
     background-color: #22092C;
     color: white;
     font-family: 'lato', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #home{
@@ -89,16 +89,22 @@ body {
     animation: pulse 1s infinite;
 }
 
+
 /* about section */
 #about-me{
-    height: 100vh;
+    min-height: 100vh;
 }
 
 #about-me-box{
     font-family: 'Roboto Mono', monospace;
-    text-align: left;
-    padding: 35% 10% 0% 10%;
-    word-wrap: break-word; /* breaking word if too long for the div */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    min-height: 40vh;
+    padding-left: 5%;
+    padding-right: 3%;
+    word-wrap: break-word;
 }
 
 #about-me-box h1{
@@ -108,19 +114,43 @@ body {
 }
 
 .image-box{
-    padding-top: 25%;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .about-images{
     border-radius: 30px;
     width: auto;
-    height: 500px;
+    max-height: 400px;
     box-shadow: 0 4px 8px rgb(0, 0, 0);
 }
 
+@media (min-width: 992px) {
+    #about-me-box{
+        min-height: 100vh;
+    }
+
+    .image-box{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .about-images{
+        border-radius: 30px;
+        width: auto;
+        max-height: 500px;
+        box-shadow: 0 4px 8px rgb(0, 0, 0);
+    }
+
+}
+
 .car-img{
-    position: absolute;
+    position: relative;
     z-index: 1;
     transition: opacity 0.3s ease-in-out;
 }
@@ -128,7 +158,8 @@ body {
 .shoes-img{
     position: absolute;
     opacity: 50%;
-    left: 27%;
+    top: 20%;
+    right: 20%;
     z-index: 0;
     transition: opacity 0.3s ease-in-out;
 }
