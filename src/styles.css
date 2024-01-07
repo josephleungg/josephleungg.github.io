@@ -169,6 +169,24 @@ body {
     z-index: 2;
 }
 
+/* projects section */
 #projects{
-    height: 100vh;
+    min-height: 100vh;
+}
+
+.project-container {
+    font-family: 'Roboto Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding-left: 3%;
+    padding-right: 3%;
+    min-height: 100vh;
+}
+
+.project-container h1{
+    font-size: 30px;
+    font-weight: bold;
+    color: #e61c39;
 }
