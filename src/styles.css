@@ -170,23 +170,30 @@ body {
 }
 
 /* projects section */
-#projects{
-    min-height: 100vh;
+#projects-text{
+    min-height: 50vh;
 }
 
-.project-container {
+#projects-cards {
+    min-height: 50vh;
+    display: flex;
+}
+
+#projects-text {
     font-family: 'Roboto Mono', monospace;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
     padding-left: 3%;
     padding-right: 3%;
-    min-height: 100vh;
 }
 
-.project-container h1{
+#projects-text h1{
     font-size: 30px;
     font-weight: bold;
     color: #e61c39;
+}
+
+.cards {
+    
 }
