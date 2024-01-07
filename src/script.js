@@ -63,3 +63,8 @@ function imageHovering(){
 }
 
 imageHovering();
+
+// function used for cards to redirect to page
+function redirectToPage(url) {
+    window.open(url, '_blank');
+}
