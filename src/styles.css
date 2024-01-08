@@ -170,15 +170,12 @@ body {
 }
 
 /* projects section */
-#projects-text{
-    min-height: 50vh;
-}
-
 #projects-text {
     font-family: 'Roboto Mono', monospace;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
     padding-left: 3%;
     padding-right: 3%;
 }
@@ -204,7 +201,6 @@ body {
 
 #projects-cards {
     display: flex;
-    min-height: 50vh;
     width: 100%;
     flex-wrap: wrap;
 }
@@ -237,4 +233,8 @@ body {
     .cards {
         width: 75%;
     }
+}
+
+#contact-section {
+    
 }
