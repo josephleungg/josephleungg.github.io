@@ -1,35 +1,21 @@
-'use client';
-import react, { useState } from 'react';
-import Link from 'next/link';
+import React from 'react';
 
 export default function MenuBar() {
-    const tabs = ["Home", "About"];
-    const pages = ["Projects", "Contact"];
-    const tabLinks = ["/", "#about"];
-    const pageLinks = ["projects", "contact"];
+    const tabs = ["Home", "About", "Projects", "Contact"];
+    const tabLinks = ["/", "/about", "/projects", "/contact"];
 
     return (
         <>
-            <div className="space-x-8 p-4 text-sm min-h-full flex justify-center items-end bg-menuColor bg-opacity-50 backdrop-blur-md glow-shadow md:hidden">
-                {tabs.map((tab, index) => (
-                    <a key={index} className="hover-text-glow hover-flicker-underline" href={tabLinks[index]}>{tab}</a>
-                ))}
-                {pages.map((page, index) => (
-                    <Link key={index} href={pageLinks[index]}>
-                        <p className="hover-text-glow hover-flicker-underline">{page}</p>
-                    </Link>
-                ))}
+            {/* Mobile version */}
+            <div className="md:hidden text-sm bg-menuColor flex flex-row justify-center items-center shadow-md w-full h-full">
+                <a href="/projects" className="hover-text-glow">test</a>
             </div>
 
-            <div className="invisible md:visible text-sm lg:text-base flex flex-col pt-12 bg-menuColor shadow-md min-w-full min-h-full">
+            {/* Desktop version */}
+            <div className="hidden md:flex text-sm lg:text-base flex-col pt-12 bg-menuColor min-h-full">
                 <div className="flex flex-col space-y-6 pl-6 pb-12">
                     {tabs.map((tab, index) => (
-                        <a key={index} className="hover-text-glow hover-flicker-underline" href={tabLinks[index]}>{tab}</a>
-                    ))}
-                    {pages.map((page, index) => (
-                    <Link key={index} href={pageLinks[index]}>
-                        <p className="hover-text-glow hover-flicker-underline">{page}</p>
-                    </Link>
+                        <a key={index} href={tabLinks[index]} className="hover-text-glow inline-block">{tab}</a>
                     ))}
                 </div>
 

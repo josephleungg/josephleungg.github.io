@@ -5,15 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer utilities {
-
-  .glow-shadow {
-    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05), 0 2px 4px rgba(255, 255, 255, 0.05), 0 3px 6px rgba(255, 255, 255, 0.05), 0 4px 8px rgba(255, 255, 255, 0.05);
-  }
-
-  .glow-shadow-2 {
-    box-shadow: 1px 0 2px rgba(255, 255, 255, 0.05), 2px 0 4px rgba(255, 255, 255, 0.05), 3px 0 6px rgba(255, 255, 255, 0.05), 4px 0 8px rgba(255, 255, 255, 0.05);
-  }
 
   .hover-text-glow:hover {
     animation: pulse 1s infinite;

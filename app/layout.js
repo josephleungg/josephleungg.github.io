@@ -1,59 +1,15 @@
-'use client';
-import React, { useEffect } from 'react';
 import "./globals.css";
 import MenuBar from './components/menuBar';
 
+export const metadata = {
+  title: 'Portfolio',
+  description: 'Personal Portfolio',
+  icons: {
+    icon: '/images/favicon.ico',
+  },
+};
+
 export default function RootLayout({ children }) {
-  useEffect(() => {
-    const handleLinkClick = (event) => {
-      const target = event.target.closest('a');
-      if (target && target.href) {
-        const targetId = target.getAttribute('href');
-        if (targetId.startsWith('#')) {
-          // Handle internal section navigation
-          event.preventDefault();
-          const targetElement = document.querySelector(targetId);
-          const contentSection = document.querySelector('#content');
-
-          if (targetElement && contentSection) {
-            if (window.location.hash === targetId) {
-              return;
-            }
-
-            contentSection.classList.add('fade-out');
-
-            setTimeout(() => {
-              window.location.hash = targetId;
-              contentSection.classList.remove('fade-out');
-              contentSection.classList.add('fade-in');
-
-              setTimeout(() => {
-                contentSection.classList.remove('fade-in');
-              }, 500);
-            }, 500);
-          }
-        } else {
-          // Handle page navigation
-          event.preventDefault();
-          const contentSection = document.querySelector('#content');
-
-          if (contentSection) {
-            contentSection.classList.add('fade-out');
-
-            setTimeout(() => {
-              window.location.href = target.href;
-            }, 500);
-          }
-        }
-      }
-    };
-
-    document.addEventListener('click', handleLinkClick);
-
-    return () => {
-      document.removeEventListener('click', handleLinkClick);
-    };
-  }, []);
 
   return (
     <html lang="en">

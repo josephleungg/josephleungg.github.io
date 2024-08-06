@@ -7,13 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backdropBlur: {
-        'none': 'none',
-        'sm': '4px',
-        'md': '12px',
-        'lg': '16px',
-        'xl': '24px',
-      },
       keyframes: {
         flicker: {
           '0%, 100%': { opacity: 1 },
