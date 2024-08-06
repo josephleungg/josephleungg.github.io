@@ -8,25 +8,31 @@ export default function Home() {
     <div>
 
       {/* main section at top */}
-      <div className="flex flex-col space-y-6 min-h-screen min-w-screen justify-center items-center">
+      <div id="home" className="flex flex-col min-h-screen text-xl md:text-3xl space-y-6 justify-center items-center">
 
         <div className="">
-          <p className="text-3xl">Hey, I'm <span className="text-secondary font-bold">Joseph </span><span className="animate-flicker">_</span></p>
+          <p className="">Hey, I'm <span className="text-secondary font-bold">Joseph </span><span className="animate-flicker">_</span></p>
         </div>
 
         <div className="">
           <CycleTitle />
         </div>
 
-        <div className="">
-          test
-        </div>
-
       </div>
 
       {/* about me */}
-      <div className="flex min-h-screen min-w-screen justify-center items-center">
-        hi
+      <div id="about" className="flex min-h-screen justify-center items-center">
+        about
+      </div>
+
+      {/* projects */}
+      <div id="projects" className="flex min-h-screen justify-center items-center">
+        projects
+      </div>
+
+      {/* contact me */}
+      <div id="contact" className="flex min-h-screen justify-center items-center">
+        contact
       </div>
 
     </div>

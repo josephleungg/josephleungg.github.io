@@ -40,6 +40,6 @@ export default function CycleTitle() {
     }, [currWordIndex]);
 
     return (
-        <p className="text-3xl">I'm a <span className="">{currWord}</span></p>
+        <p className="">I'm a <span className="">{currWord}</span></p>
     );
 }

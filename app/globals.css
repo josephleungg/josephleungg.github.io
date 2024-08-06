@@ -6,7 +6,43 @@
 @tailwind utilities;
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+
+  .glow-shadow {
+    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05), 0 2px 4px rgba(255, 255, 255, 0.05), 0 3px 6px rgba(255, 255, 255, 0.05), 0 4px 8px rgba(255, 255, 255, 0.05);
   }
+
+  .glow-shadow-2 {
+    box-shadow: 1px 0 2px rgba(255, 255, 255, 0.05), 2px 0 4px rgba(255, 255, 255, 0.05), 3px 0 6px rgba(255, 255, 255, 0.05), 4px 0 8px rgba(255, 255, 255, 0.05);
+  }
+
+  .hover-text-glow:hover {
+    animation: pulse 1s infinite;
+    text-decoration:underline;
+  }
+
+  @keyframes pulse{
+    /* red pulsing animation */
+    0% { transform: scale(1); }
+    50% { transform: scale(1); color: #e61c39; }
+    100% { transform: scale(1); color: white; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s forwards;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
 }

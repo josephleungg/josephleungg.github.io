@@ -4,9 +4,10 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
-          <link rel="icon" href="/favicon.png" type="image/png" />
+          <title>Personal Portfolio</title>
+          <meta name="description" content="Joseph Leung Personal Portfolio Website" />
         </Head>
         <body>
           <Main />
