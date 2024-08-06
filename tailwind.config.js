@@ -8,7 +8,11 @@ module.exports = {
   theme: {
     extend: {
       backdropBlur: {
-        'weak': '2px',
+        'none': 'none',
+        'sm': '4px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
       },
       keyframes: {
         flicker: {
@@ -25,7 +29,7 @@ module.exports = {
       },
       colors: {
         primary: "#22092C",
-        menuColor: "#130518",
+        menuColor: "#270a32",
         secondary: "#e61c39",
         tertiary: "#cb374b",
       },

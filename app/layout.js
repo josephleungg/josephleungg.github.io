@@ -6,28 +6,44 @@ import MenuBar from './components/menuBar';
 export default function RootLayout({ children }) {
   useEffect(() => {
     const handleLinkClick = (event) => {
-      if (event.target.tagName === 'A' && event.target.href) {
-        event.preventDefault();
-        const targetId = event.target.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        const contentSection = document.querySelector('#content');
+      const target = event.target.closest('a');
+      if (target && target.href) {
+        const targetId = target.getAttribute('href');
+        if (targetId.startsWith('#')) {
+          // Handle internal section navigation
+          event.preventDefault();
+          const targetElement = document.querySelector(targetId);
+          const contentSection = document.querySelector('#content');
 
-        if (targetElement && contentSection) {
-          if (window.location.hash === targetId) {
-            return;
-          }
+          if (targetElement && contentSection) {
+            if (window.location.hash === targetId) {
+              return;
+            }
 
-          contentSection.classList.add('fade-out');
-
-          setTimeout(() => {
-            window.location.hash = targetId;
-            contentSection.classList.remove('fade-out');
-            contentSection.classList.add('fade-in');
+            contentSection.classList.add('fade-out');
 
             setTimeout(() => {
-              contentSection.classList.remove('fade-in');
+              window.location.hash = targetId;
+              contentSection.classList.remove('fade-out');
+              contentSection.classList.add('fade-in');
+
+              setTimeout(() => {
+                contentSection.classList.remove('fade-in');
+              }, 500);
             }, 500);
-          }, 500);
+          }
+        } else {
+          // Handle page navigation
+          event.preventDefault();
+          const contentSection = document.querySelector('#content');
+
+          if (contentSection) {
+            contentSection.classList.add('fade-out');
+
+            setTimeout(() => {
+              window.location.href = target.href;
+            }, 500);
+          }
         }
       }
     };
@@ -46,7 +62,7 @@ export default function RootLayout({ children }) {
           <MenuBar />
         </div>
 
-        <div id="content" className="md:ml-[15%] md:min-w-[85%] min-h-screen">
+        <div id="content" className="md:ml-[15%] md:min-w-[85%] min-h-screen fade-in">
           {children}
         </div>
       </body>
