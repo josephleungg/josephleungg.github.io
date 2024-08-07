@@ -5,8 +5,19 @@
 @tailwind components;
 @tailwind utilities;
 
+#content {
+  transition-property: opacity, transform, filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
+}
 
 @layer utilities {
+
+  .page-transition {
+    opacity: 0;
+    transform: translteY(40px);
+    filter: blur(12px);
+  }
 
   .hover-text-glow:hover {
     animation: pulse 1s infinite;
