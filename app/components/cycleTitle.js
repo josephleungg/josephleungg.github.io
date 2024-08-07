@@ -1,11 +1,12 @@
-import react, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function CycleTitle() {
     const [currWord, setCurrWord] = useState("");
     const [currWordIndex, setCurrWordIndex] = useState(0);
   
     const tags = ["3rd Year Student", "Software Developer", "Full-Stack Developer", "Computer Scientist", "Programmer"];
-  
+
+
     // looping the changing titles
     useEffect(() => {
       const timeouts = [];
@@ -30,16 +31,18 @@ export default function CycleTitle() {
       // Update currWordIndex immediately after deletion is complete
       const updateIndexTimeout = setTimeout(() => {
         setCurrWordIndex((prevIndex) => (prevIndex + 1) % tags.length);
-      }, deleteStartTime + 100 * tags[currWordIndex].length + 200); // Update index right after deletion
+      }, deleteStartTime + 100 * tags[currWordIndex].length + 100); // Adjust timing as needed
       timeouts.push(updateIndexTimeout);
-    
-      // Cleanup function to clear timeouts
+  
+      // Cleanup timeouts on unmount or dependency change
       return () => {
         timeouts.forEach(timeoutId => clearTimeout(timeoutId));
       };
-    }, [currWordIndex]);
+    }, [currWordIndex]); // Dependency array includes currWordIndex
 
     return (
+      <div>
         <p className="">I'm a <span className="">{currWord}</span></p>
+      </div>
     );
 }

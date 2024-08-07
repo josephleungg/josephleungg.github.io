@@ -13,14 +13,16 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className="flex flex-col md:flex-row bg-primary text-white font-lato">
-        <div className="md:min-w-[15%] md:min-h-screen h-[10vh] fixed min-w-full">
+      <body className="flex flex-col bg-primary text-white font-lato">
+        
+        <div className="fixed">
           <MenuBar />
         </div>
-
-        <div id="content" className="md:ml-[15%] md:min-w-[85%] min-h-screen fade-in">
+        
+        <div id="content" className="min-h-screen">
           {children}
         </div>
+
       </body>
     </html>
   );
