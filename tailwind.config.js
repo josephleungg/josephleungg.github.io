@@ -22,7 +22,7 @@ module.exports = {
       },
       colors: {
         primary: "#22092C",
-        menuColor: "#15051b",
+        menuColor: "#000000",
         secondary: "#e61c39",
         tertiary: "#cb374b",
       },

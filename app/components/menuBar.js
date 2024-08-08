@@ -1,11 +1,13 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import { useRouter, usePathname } from "next/navigation"
 import { cn } from '../../lib/utils';
 import { motion, useMotionValue, AnimatePresence, useTransform } from 'framer-motion';
 
 export default function MenuBar() {
+    const [isScrolling, setIsScrolling] = useState(false);
+
     const links = [
         {
             path: "/",
@@ -38,11 +40,8 @@ export default function MenuBar() {
       const body = document.getElementById('content');
   
       body.classList.add('page-transition');
-  
       await sleep(300);
-  
       router.push(path);
-  
       await sleep(300);
   
       body.classList.remove('page-transition');
@@ -70,9 +69,30 @@ export default function MenuBar() {
         y.set(yRange * 10)
     }
 
+    // handling scroll navbar, applying blur and bg color
+    useEffect(() => {
+        const handleScroll = () => {
+            const nav = document.querySelector('nav');
+            const maxScroll = 200; // Adjust this value as needed
+            const scrollY = window.scrollY;
+            const opacity = Math.min(scrollY / maxScroll, 0.8);
+            const blur = Math.min(scrollY / maxScroll * 2, 2);
+            const boxShadow = `0 4px 6px rgba(0, 0, 0, ${opacity * 0.7})`; // Adjust shadow intensity as needed
+            nav.style.backgroundColor = `rgba(14, 4, 18, ${opacity})`;
+            nav.style.backdropFilter = `blur(${blur}px)`;
+            nav.style.boxShadow = boxShadow;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <nav className="p-8">
-            <ul className="flex gap-8">
+        <nav className="flex justify-center items-center py-8 md:p-12">
+            <ul className="flex gap-2 md:gap-8">
                 <AnimatePresence>
                 {links.map((link, index) => {
                     const x = useMotionValue(0);
@@ -97,8 +117,8 @@ export default function MenuBar() {
                             onClick={(e) => handleTransition(e, link.path)}
                             href={link.path}
                             className={cn(
-                                "relative font-medium rounded-lg text-sm py-2 px-4 transition-all:duration-500 ease-out hover:bg-menuColor",
-                                pathname === link.path ? "text-secondary" : "hover-text-glow")}
+                                "relative font-roboto font-medium rounded-lg text-sm md:text-base py-2 px-4 transition-all:duration-500 ease-out hover:bg-menuColor",
+                                pathname === link.path ? "font-extrabold text-secondary" : "hover-text-glow")}
                             >
                             <motion.span
                                 style={{ x: textX, y: textY }}
@@ -112,7 +132,6 @@ export default function MenuBar() {
                                     layoutId="underline"
                                     className="absolute w-full h-full rounded-md left-0 bottom-0 bg-menuColor"
                                 >
-                                    
                                 </motion.div>
                             ) : null}
                         </MotionLink>

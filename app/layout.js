@@ -15,11 +15,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="flex flex-col bg-primary text-white font-lato">
         
-        <div className="fixed">
+        <div className="fixed min-w-full">
           <MenuBar />
         </div>
         
-        <div id="content" className="min-h-screen">
+        <div id="content" className="min-h-screen w-full max-w-screen">
           {children}
         </div>
 
