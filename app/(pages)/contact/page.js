@@ -1,24 +1,25 @@
 export default function Contact() {
     return (
-        <div className="flex flex-col w-full max-w-screen">
-            contact
-            <div className="min-h-screen">
-                test 
+        <div className="flex flex-col items-center justify-center py-32 min-w-screen">
+
+            <p className="text-secondary font-extrabold text-3xl">CONTACT ME</p>
+            <p className="font-medium text-lg">asdfasdfgsdfg</p>
+
+
+            <div className="flex flex-row gap-5">
+                
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    height="1em"
+                    width="1em"
+                    href="https://www.linkedin.com/in/kevin-chen-1b1b1b1b1/"
+                    >
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+
             </div>
-            <div className="min-h-screen">
-                <h1 className="text-2xl font-extrabold text-secondary">A LITTLE BIT ABOUT ME</h1>
-                <p>I'm currently a third year <span className="font-bold text-tertiary">Computer Science </span> 
-                    student attending Toronto Metropolitan University! Beyond the screen, I find joy in lifting weights and 
-                    going on late night drives, I also love to binge shows and play video games whenever I have the time. 
-                    My interests extend to web design and working on software that tackles meaningful real-world problems. 
-                    I am always excited to continue learning, and developing myself in the technological field!</p>
-            </div>
-            <div className="min-h-screen">
-                test
-            </div>
-            <div className="min-h-screen">
-                test
-            </div>
+
         </div>
     );
 }
