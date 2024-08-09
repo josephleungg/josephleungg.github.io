@@ -73,13 +73,14 @@ export default function MenuBar() {
     useEffect(() => {
         const handleScroll = () => {
             const nav = document.querySelector('nav');
-            const maxScroll = 200; // Adjust this value as needed
+            const maxScroll = 1000; // Adjust this value as needed
             const scrollY = window.scrollY;
-            const opacity = Math.min(scrollY / maxScroll, 0.8);
-            const blur = Math.min(scrollY / maxScroll * 2, 2);
-            const boxShadow = `0 4px 6px rgba(0, 0, 0, ${opacity * 0.7})`; // Adjust shadow intensity as needed
+            const opacity = Math.min(scrollY / maxScroll, 0.5);
+            const blur = Math.min(scrollY / maxScroll * 3, 2);
+            const boxShadow = `0 4px 6px rgba(0, 0, 0, ${opacity * 1})`; // Adjust shadow intensity as needed
             nav.style.backgroundColor = `rgba(14, 4, 18, ${opacity})`;
             nav.style.backdropFilter = `blur(${blur}px)`;
+            nav.style.webkitBackdropFilter = `blur(${blur}px)`;
             nav.style.boxShadow = boxShadow;
         };
 
