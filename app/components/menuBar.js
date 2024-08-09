@@ -92,7 +92,7 @@ export default function MenuBar() {
     }, []);
 
     return (
-        <nav className="flex justify-center items-center py-8 md:p-12">
+        <nav className="flex justify-center items-center py-8 md:py-12">
             <ul className="flex gap-2 md:gap-8">
                 <AnimatePresence>
                 {links.map((link, index) => {

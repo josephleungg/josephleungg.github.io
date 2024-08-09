@@ -1,18 +1,64 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper';
-import { images } from '../../lib/images'
+import { useState, useEffect } from "react"
+import { ChevronLeft, ChevronRight } from "react-feather"
 
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+export default function Carousel({ children: slides, autoSlide = false, autoSlideInterval = 3000 }) {
+  const [curr, setCurr] = useState(0)
 
-export default function imageCarousel() {
-    const images = []
+  const prev = () =>
+    setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1))
+  const next = () =>
+    setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1))
+
+  useEffect(() => {
+    if (!autoSlide) return
+    const slideInterval = setInterval(next, autoSlideInterval)
+    return () => clearInterval(slideInterval)
+  }, [])
 
   return (
-    <div>imageCarousel</div>
+    <div className="relative max-h-[60vh] w-full overflow-hidden">
+      <div
+        className="flex transition-transform ease-out duration-500"
+        style={{ transform: `translateX(-${curr * 100}%)` }}
+      >
+        {slides.map((slide, index) => (
+          <div key={index} className="min-w-full flex justify-center">
+            <img src={slide} className="max-h-[60vh] max-w-full object-contain rounded-3xl shadow-2xl"/>
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation buttons */}
+      <div className="absolute inset-0 flex items-center justify-between p-4">
+        <button
+          onClick={prev}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+        >
+          <ChevronLeft size={30} />
+        </button>
+        <button
+          onClick={next}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+        >
+          <ChevronRight size={30} />
+        </button>
+      </div>
+
+      {/* Indicators */}
+      <div className="absolute bottom-4 right-0 left-0">
+        <div className="flex items-center justify-center gap-2">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              className={`
+              transition-all w-3 h-3 bg-white rounded-full
+              ${curr === i ? "p-2" : "bg-opacity-50"}
+            `}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
