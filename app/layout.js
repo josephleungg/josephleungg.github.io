@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="flex flex-col bg-primary text-white font-lato">
         
-        <div className="fixed min-w-full">
+        <div className="fixed z-50 min-w-full">
           <MenuBar />
         </div>
         

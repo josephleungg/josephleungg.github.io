@@ -19,6 +19,7 @@ module.exports = {
       fontFamily: {
         lato: ['Lato', 'sans-serif'],
         roboto: ['Roboto Mono', 'monospace'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       colors: {
         primary: "#22092C",

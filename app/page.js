@@ -8,7 +8,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen text-xl md:text-2xl lg:text-3xl space-y-6 justify-center items-center">
 
         <div className="">
-          <p className="">Hey, I'm <span className="text-secondary font-bold">Joseph </span><span className="animate-flicker">_</span></p>
+          <p className="">Hey, I'm <span className="text-secondary font-bold">Joseph</span><span className="animate-flicker">_</span></p>
         </div>
 
         <div className="">
