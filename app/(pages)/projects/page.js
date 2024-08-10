@@ -17,8 +17,8 @@ export default function Projects() {
                    <div key={i} className="flex flex-col">
                         {/* project image */}
                         <div className="relative w-96 h-72 rounded-3xl text-white overflow-hidden cursor-pointer transition-all duration-700 card shadow-xl">
-                            <div className={`absolute inset-0 w-full h-full flex justify-center ${project[5]} transition-all duration-100 delay-200 z-20 hover:opacity-0`}>
-                                <img src={project[2]} className="object-cover" />
+                            <div className={`absolute inset-0 w-full h-full flex justify-center bg-[#1f2937] transition-all duration-100 delay-200 z-20 hover:opacity-0`}>
+                                <img src={project[2]} className="object-cover rounded-3xl" alt={project[0]} />
                             </div>
                             
                             <div className="absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black transition-all z-10 card-back">
@@ -29,7 +29,7 @@ export default function Projects() {
                         
                         <div className="flex flex-row pt-2 pl-2 gap-2">
                             {(project[7]).map((badge, index) => (
-                                <img key={index} src={badge} />
+                                <img key={index} src={badge} alt={badge} />
                             ))}
                         </div>
                         

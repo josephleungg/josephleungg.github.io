@@ -1,5 +1,5 @@
 import "./globals.css";
-import MenuBar from './components/menuBar';
+import MenuBar from '../components/menuBar';
 
 export const metadata = {
   title: 'Portfolio',

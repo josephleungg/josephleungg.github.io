@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import CycleTitle from './components/cycleTitle'
+import CycleTitle from '../components/cycleTitle'
 
 export default function Home() {
   

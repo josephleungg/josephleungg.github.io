@@ -1,7 +1,15 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import Link from 'next/link';
-import { cn } from '../../lib/utils';
+import { cn } from '../lib/utils';
 import { usePathname } from "next/navigation";
+
+function mapRange(inputLower, inputUpper, outputLower, outputUpper) {
+    const INPUT_RANGE = inputUpper - inputLower;
+    const OUTPUT_RANGE = outputUpper - outputLower;
+
+    return (value) =>
+        outputLower + (((value - inputLower) / INPUT_RANGE) * OUTPUT_RANGE || 0);
+}
 
 function MenuItem({ link, handleTransition }) {
     const x = useMotionValue(0);
