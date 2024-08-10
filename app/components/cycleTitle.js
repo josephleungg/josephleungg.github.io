@@ -42,7 +42,7 @@ export default function CycleTitle() {
 
     return (
       <div>
-        <p className="">I'm a <span className="">{currWord}</span></p>
+        <p className="">I&apos;m a <span className="">{currWord}</span></p>
       </div>
     );
 }

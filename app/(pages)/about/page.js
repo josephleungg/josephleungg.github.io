@@ -2,6 +2,7 @@
 import React from 'react';
 import { ChevronDown } from "react-feather"
 import ImageCarousel from '../../components/imageCarousel'
+import Image from 'next/image';
 
 export default function AboutPage() {
     const images = [
@@ -49,7 +50,7 @@ export default function AboutPage() {
                 
                 <div className="flex flex-col md:h-screen md:w-[50%] md:items-left justify-center">
                     <h1 className="text-2xl md:text-3xl font-montserrat font-black italic text-secondary">A LITTLE BIT ABOUT ME</h1>
-                    <p className="text-justify text-lg">I'm currently a third year <span className="font-bold text-tertiary">Computer Science </span> 
+                    <p className="text-justify text-lg">I&apos;m currently a third year <span className="font-bold text-tertiary">Computer Science </span> 
                         student attending Toronto Metropolitan University! Beyond the screen, I find joy in lifting weights and 
                         going on late night drives, I also love to binge shows and play video games whenever I have the time. 
                         My interests extend to web design and working on software that tackles meaningful real-world problems. 
@@ -82,8 +83,8 @@ export default function AboutPage() {
                     
                     <div className="flex flex-row flex-wrap justify-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
                         {technologies.map((icon, i) => (
-                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 w-[13%] p-1 md:p-2 lg:p-4 rounded-3xl">
-                                <img src={icon[0]} className={`${icon[1]}`} />
+                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl">
+                                <Image src={icon[0]} alt={`Technology ${i}`} className={`${icon[1]}`} layout="intrinsic" width={50} height={50} />
                             </div>
                         ))}
                     </div>
@@ -97,8 +98,8 @@ export default function AboutPage() {
                     
                     <div className="flex flex-row flex-wrap h-full justify-center items-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
                         {tools.map((icon, i) => (
-                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 w-[13%] p-1 md:p-2 lg:p-4 rounded-3xl">
-                                <img src={icon[0]} className={`${icon[1]}`} />
+                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl">
+                                <Image src={icon[0]} alt={`Tool ${i}`} className={`${icon[1]}`} width={50} height={50} />
                             </div>
                         ))}
                     </div>
