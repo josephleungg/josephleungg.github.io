@@ -45,7 +45,7 @@ export default function AboutPage() {
     return(
         <div className="font-roboto">
             {/* about me section */}
-            <div className="relative flex flex-col md:flex-row my-32 md:my-0 px-12 gap-20 md:gap-32 min-h-screen">
+            <div className="relative flex flex-col md:flex-row my-32 md:my-0 px-12 md:px-24 gap-24 md:gap-32 min-h-screen">
                 
                 <div className="flex flex-col md:h-screen md:w-[50%] md:items-left justify-center">
                     <h1 className="text-2xl md:text-3xl font-montserrat font-black italic text-secondary">A LITTLE BIT ABOUT ME</h1>
@@ -72,7 +72,7 @@ export default function AboutPage() {
             </div>
 
             {/* skills section */}
-            <div id="skills" className="flex flex-col h-full md:gap-12 md:flex-row pt-32 pb-64 md:py-64 px-12">
+            <div id="skills" className="flex flex-col h-full md:gap-24 md:flex-row pt-32 pb-64 md:py-64 px-8 md:px-24">
                 
                 {/* technologies */}
                 <div className="cursor-pointer transform transition duration-500 hover:scale-105 flex flex-col md:w-[50%] shadow-2xl">
