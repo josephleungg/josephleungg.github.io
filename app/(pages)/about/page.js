@@ -81,8 +81,8 @@ export default function AboutPage() {
                     </div>
                     
                     <div className="flex flex-row flex-wrap justify-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
-                        {technologies.map((icon) => (
-                            <div className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 w-[13%] p-1 md:p-2 lg:p-4 rounded-3xl">
+                        {technologies.map((icon, i) => (
+                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 w-[13%] p-1 md:p-2 lg:p-4 rounded-3xl">
                                 <img src={icon[0]} className={`${icon[1]}`} />
                             </div>
                         ))}
@@ -96,8 +96,8 @@ export default function AboutPage() {
                     </div>
                     
                     <div className="flex flex-row flex-wrap h-full justify-center items-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
-                        {tools.map((icon) => (
-                            <div className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 w-[13%] p-1 md:p-2 lg:p-4 rounded-3xl">
+                        {tools.map((icon, i) => (
+                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 w-[13%] p-1 md:p-2 lg:p-4 rounded-3xl">
                                 <img src={icon[0]} className={`${icon[1]}`} />
                             </div>
                         ))}
