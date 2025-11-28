@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { ChevronDown } from "react-feather"
-import ImageCarousel from '../../../components/imageCarousel'
+import ImageCarousel from '../imageCarousel'
 import Image from 'next/image';
 
 export default function AboutPage() {

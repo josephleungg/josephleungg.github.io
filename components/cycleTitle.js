@@ -4,7 +4,7 @@ export default function CycleTitle() {
     const [currWord, setCurrWord] = useState("");
     const [currWordIndex, setCurrWordIndex] = useState(0);
   
-    const tags = ["3rd Year Student", "Software Developer", "Full-Stack Developer", "Computer Scientist", "Programmer"];
+    const tags = ["4th Year Student", "Software Developer", "Full-Stack Developer", "Computer Scientist", "Programmer"];
 
 
     // looping the changing titles

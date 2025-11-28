@@ -2,7 +2,7 @@ import "./globals.css";
 import MenuBar from '../components/menuBar';
 
 export const metadata = {
-  title: 'Portfolio',
+  title: 'Joseph Leung',
   description: 'Personal Portfolio',
   icons: {
     icon: '/images/favicon.ico',

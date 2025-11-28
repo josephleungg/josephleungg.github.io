@@ -8,10 +8,10 @@ export default function MenuBar() {
     const [isScrolling, setIsScrolling] = useState(false);
 
     const links = [
-        { path: "/", name: "Home" },
-        { path: "/about", name: "About" },
-        { path: "/projects", name: "Projects" },
-        { path: "/contact", name: "Contact" }
+        { path: "#home", name: "Home" },
+        { path: "#about", name: "About" },
+        { path: "#projects", name: "Projects" },
+        { path: "#contact", name: "Contact" }
     ];
 
     const router = useRouter();
@@ -27,7 +27,14 @@ export default function MenuBar() {
 
         body.classList.add('page-transition');
         await sleep(300);
-        router.push(path);
+        
+        // For hash links, scroll to the element
+        const targetId = path.substring(1); // removes the #
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+        
         await sleep(300);
 
         body.classList.remove('page-transition');

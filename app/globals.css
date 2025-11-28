@@ -6,6 +6,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 #content {
   transition-property: opacity, filter;
   transition-timing-function: ease-in-out;

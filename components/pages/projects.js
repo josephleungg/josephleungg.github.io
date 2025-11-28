@@ -1,5 +1,5 @@
 'use client';
-import { projects } from '../../../lib/utils'
+import { projects } from '../../lib/utils'
 
 export default function Projects() {
 
