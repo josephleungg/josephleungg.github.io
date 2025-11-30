@@ -47,7 +47,7 @@ export default function Projects() {
         <div className="flex flex-col items-center py-32 px-8 md:px-32 min-h-screen">
             <div className="flex flex-col items-center">
                 <h1 className="text-2xl md:text-3xl font-montserrat font-black text-secondary">PROJECTS</h1>
-                <p className="text-lg font-roboto mt-2 text-center">Check out some of my projects here!</p>
+                <p className="text-lg font-roboto mt-2 text-center">Check out some of my featured projects here!</p>
             </div>
 
             {/* project cards */}
