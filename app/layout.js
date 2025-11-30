@@ -7,6 +7,9 @@ export const metadata = {
   icons: {
     icon: '/images/favicon.ico',
   },
+  openGraph: {
+    images: [],
+  },
 };
 
 export default function RootLayout({ children }) {
