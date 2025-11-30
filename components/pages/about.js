@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { ChevronDown } from "react-feather"
 import ImageCarousel from '../imageCarousel'
 import Image from 'next/image';
 
@@ -13,43 +12,31 @@ export default function AboutPage() {
         { src: "/images/4.png", label: "Hiking", alt: "Hiking trail view" },
     ];
 
-    const technologies = [
-        // ICONS TAKEN FROM: https://devicon.dev/
-        // Format: [iconUrl, className, officialUrl]
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", "", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", "", "https://www.python.org/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-plain.svg", "", "https://www.java.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg", "", "https://www.typescriptlang.org/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg", "", "https://en.cppreference.com/w/c"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", "", "https://developer.mozilla.org/en-US/docs/Web/HTML"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", "", "https://developer.mozilla.org/en-US/docs/Web/CSS"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg", "", "https://nodejs.org/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", "", "https://react.dev/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", "", "https://nextjs.org/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg", "bg-white rounded-3xl", "https://expressjs.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain-wordmark.svg", "", "https://www.djangoproject.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg", "bg-white rounded-3xl", "https://flask.palletsprojects.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", "", "https://www.mongodb.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg", "", "https://supabase.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", "", "https://tailwindcss.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg", "", "https://www.tensorflow.org/"],
-    ]
-
-    const tools = [
-        // Format: [iconUrl, className, officialUrl]
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", "bg-white rounded-3xl", "https://github.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", "", "https://www.linux.org/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg", "", "https://www.postman.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", "", "https://code.visualstudio.com/"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg", "", "https://www.adobe.com/products/photoshop.html"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/premierepro/premierepro-plain.svg", "bg-[#E298F2] rounded-xl", "https://www.adobe.com/products/premiere.html"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", "", "https://www.figma.com/"],
-    ]
+    const skillBubbles = [
+        { name: "Python", href: "https://www.python.org/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", size: 130, x: "38%", y: "28%" },
+        { name: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", size: 120, x: "62%", y: "22%" },
+        { name: "Java", href: "https://www.java.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", size: 115, x: "24%", y: "42%" },
+        { name: "React.js", href: "https://react.dev/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", size: 150, x: "50%", y: "45%" },
+        { name: "Next.js", href: "https://nextjs.org/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", size: 125, x: "73%", y: "40%", invert: true },
+        { name: "Express.js", href: "https://expressjs.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", size: 110, x: "20%", y: "20%", invert: true },
+        { name: "Spring Boot", href: "https://spring.io/projects/spring-boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg", size: 105, x: "30%", y: "64%" },
+        { name: "Flask", href: "https://flask.palletsprojects.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg", size: 100, x: "10%", y: "33%", invert: true },
+        { name: "DJango", href: "https://www.djangoproject.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain-wordmark.svg", size: 120, x: "78%", y: "68%", invert: true },
+        { name: "React Native", href: "https://reactnative.dev/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", size: 110, x: "65%", y: "62%" },
+        { name: "TailwindCSS", href: "https://tailwindcss.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", size: 95, x: "82%", y: "25%" },
+        { name: "MongoDB", href: "https://www.mongodb.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", size: 100, x: "15%", y: "58%" },
+        { name: "PostgreSQL", href: "https://www.postgresql.org/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", size: 100, x: "48%", y: "75%" },
+        { name: "SQL", href: "https://www.w3schools.com/sql/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", size: 90, x: "35%", y: "80%" },
+        { name: "Postman", href: "https://www.postman.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg", size: 90, x: "84%", y: "55%" },
+        { name: "GitHub Actions", href: "https://github.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", size: 95, x: "58%", y: "78%", invert: true },
+        { name: "Red Hat OCP", href: "https://www.redhat.com/en/technologies/cloud-computing/openshift", icon: "https://www.vectorlogo.zone/logos/redhat/redhat-icon.svg", size: 115, x: "88%", y: "12%" },
+        { name: "Azure", href: "https://azure.microsoft.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg", size: 105, x: "12%", y: "12%" },
+    ];
 
     return(
         <div className="font-roboto">
             {/* about me section */}
-            <div className="relative grid min-h-screen gap-12 px-8 py-16 md:px-24 lg:grid-cols-2">
+            <div className="relative grid min-h-screen gap-12 px-8 pt-16 md:px-24 lg:grid-cols-2">
                 <div className="flex flex-col justify-center gap-6">
                     <div className="flex flex-col gap-6 md:items-start">
                         <div className="relative h-56 w-56 shrink-0 overflow-hidden rounded-full border border-white/20 bg-primary-soft/80 shadow-2xl md:h-64 md:w-64">
@@ -76,51 +63,47 @@ export default function AboutPage() {
                         <ImageCarousel slides={interests} autoSlideInterval={3200} />
                     </div>
                 </div>
-
+                
             </div>
 
             {/* skills section */}
-            <div id="skills" className="flex flex-col h-full md:gap-24 md:flex-row pt-32 pb-64 md:py-64 px-8 md:px-24">
-                
-                {/* technologies */}
-                <div className="cursor-pointer transform transition duration-500 hover:scale-105 flex flex-col md:w-[50%] shadow-2xl">
-                    <div className="flex justify-center">
-                        <h1 className="text-2xl md:text-3xl font-montserrat font-black italic text-secondary">TECHNOLOGIES</h1>
-                    </div>
-                    
-                    <div className="flex flex-row flex-wrap justify-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
-                        {technologies.map((icon, i) => (
-                            <div 
-                                key={i} 
-                                onClick={() => window.open(icon[2], '_blank')}
-                                className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl"
-                            >
-                                <Image src={icon[0]} alt={`Technology ${i}`} className={`${icon[1]}`} layout="intrinsic" width={50} height={50} />
+            <section id="skills" className="relative px-6 pb-32 md:px-16 lg:px-24">
+                <div className="relative overflow-hidden rounded-[48px] border border-white/10 bg-primary-soft/30 px-6 py-12 shadow-2xl backdrop-blur-xl lg:px-12 lg:py-16">
+                    <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+                        <div className="flex flex-col justify-center gap-6">
+                            <div>
+                                <p className="text-xs font-semibold uppercase tracking-[0.6em] text-muted">Languages & Tools</p>
+                                <h2 className="mt-2 text-3xl font-montserrat font-black text-secondary lg:text-4xl">SOME TECH THAT I USE</h2>
                             </div>
-                        ))}
+                    </div>
+                        <div className="rounded-[32px] border border-white/10 bg-primary-soft/30 p-6 shadow-xl">
+                            <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+                                {skillBubbles.map((bubble) => (
+                                    <a
+                                        key={bubble.name}
+                                        href={bubble.href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-white/90 transition-transform duration-200 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+                                        aria-label={bubble.name}
+                                    >
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-black/30">
+                                            <Image
+                                                src={bubble.icon}
+                                                alt={bubble.name}
+                                                width={28}
+                                                height={28}
+                                                className={bubble.invert ? "invert" : ""}
+                                            />
+                                        </div>
+                                        <p className="text-[10px] font-semibold text-center leading-tight">{bubble.name}</p>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                {/* tools */}
-                <div className="cursor-pointer transform transition duration-500 hover:scale-105 flex flex-col pt-12 md:pt-0 md:w-[50%] shadow-2xl">
-                    <div className="flex justify-center">
-                        <h1 className="text-2xl md:text-3xl font-montserrat font-black italic text-secondary">TOOLS</h1>
-                    </div>
-                    
-                    <div className="flex flex-row flex-wrap h-full justify-center items-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
-                        {tools.map((icon, i) => (
-                            <div 
-                                key={i} 
-                                onClick={() => window.open(icon[2], '_blank')}
-                                className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl"
-                            >
-                                <Image src={icon[0]} alt={`Tool ${i}`} className={`${icon[1]}`} width={50} height={50} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-            </div>
+            </section>
 
         </div>
     );
