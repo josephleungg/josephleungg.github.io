@@ -22,10 +22,13 @@ module.exports = {
         montserrat: ['Montserrat', 'sans-serif'],
       },
       colors: {
-        primary: "#22092C",
-        menuColor: "#000000",
-        secondary: "#e61c39",
-        tertiary: "#cb374b",
+        primary: "#090a14", // deep obsidian background
+        "primary-soft": "#111327", // card surface / nav shell
+        secondary: "#cdb7ff", // pastel purple accent
+        tertiary: "#8bc6ff", // cool highlight to pair with purple
+        accent: "#f5f2ff", // soft off-white for text/cards
+        muted: "#737a8c", // subtle gray for borders/body copy
+        ink: "#fdfcff", // high-contrast text on dark surfaces
       },
     },
   },
