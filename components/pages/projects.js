@@ -51,7 +51,8 @@ export default function Projects() {
             </div>
 
             {/* project cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 w-full max-w-7xl">
+            {/* Desktop: Grid layout */}
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 mt-12 w-full max-w-7xl">
 
                 {projects.map((project, i) => (
                    <div 
@@ -149,6 +150,123 @@ export default function Projects() {
                     </div>     
                 ))}
 
+            </div>
+
+            {/* Mobile: Horizontal scroll layout */}
+            <div className="md:hidden flex gap-6 overflow-x-auto pb-8 px-4 mt-12 w-full scroll-smooth scrollbar-hide"
+                style={{
+                    scrollSnapType: 'x mandatory',
+                    WebkitOverflowScrolling: 'touch'
+                }}
+            >
+                {projects.map((project, i) => (
+                   <div 
+                        key={i} 
+                        className="group relative flex flex-col flex-shrink-0 w-[320px] bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg transition-all duration-300 border border-gray-700/50 scroll-snap-align-start"
+                   >
+                        {/* Project image */}
+                        <div className="relative w-full h-56 bg-gradient-to-br from-gray-700 to-gray-800 overflow-hidden">
+                            <img 
+                                src={project[2]} 
+                                className="w-full h-full object-cover" 
+                                alt={project[0]} 
+                            />
+                            {/* Gradient overlay on image */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        </div>
+                        
+                        {/* Card content */}
+                        <div className="flex flex-col flex-1 p-6">
+                            {/* Status badge */}
+                            <div className="mb-3">
+                                {project[6] ? (
+                                    <span className="inline-block px-3 py-1 bg-secondary/20 text-secondary border border-secondary/30 text-xs font-bold rounded-full">
+                                        Completed
+                                    </span>
+                                ) : (
+                                    <span className="inline-block px-3 py-1 bg-orange-500/20 text-orange-400 border border-orange-500/30 text-xs font-bold rounded-full">
+                                        In Development
+                                    </span>
+                                )}
+                            </div>
+
+                            {/* Title */}
+                            <h2 className="text-xl font-montserrat font-bold text-white mb-3">
+                                {project[0]}
+                            </h2>
+                            
+                            {/* Description */}
+                            <p className="text-sm font-roboto text-gray-300 mb-4 flex-1">
+                                {project[1]}
+                            </p>
+                            
+                            {/* Technology badges */}
+                            <div className="flex flex-wrap gap-2 mb-4 pt-4 border-t border-gray-700/50">
+                                {project[7].slice(0, 6).map((badge, index) => {
+                                    // Extract technology name from badge URL
+                                    const techName = badge.split('badge/')[1]?.split('-')[0] || `Tech ${index}`;
+                                    const colorClass = getTechColor(techName);
+                                    
+                                    return (
+                                        <span 
+                                            key={index}
+                                            className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${colorClass}`}
+                                        >
+                                            {techName}
+                                        </span>
+                                    );
+                                })}
+                                {project[7].length > 6 && (
+                                    <span className="px-3 py-1.5 text-xs text-gray-400 self-center font-medium">
+                                        +{project[7].length - 6}
+                                    </span>
+                                )}
+                            </div>
+                            
+                            {/* Buttons */}
+                            <div className="flex gap-3">
+                                <a
+                                    href={project[3]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 bg-gray-700/50 hover:bg-gray-600/50 text-white font-montserrat font-medium text-sm rounded-lg transition-all duration-300 border border-gray-600/50 hover:border-gray-500"
+                                >
+                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                                    </svg>
+                                    GitHub
+                                </a>
+                                
+                                {project[4] && (
+                                    <a
+                                        href={project[4]}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 bg-secondary/90 hover:bg-secondary text-white font-montserrat font-medium text-sm rounded-lg transition-all duration-300"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                        Demo
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </div>     
+                ))}
+            </div>
+
+            {/* Mobile scroll indicator */}
+            <div className="flex justify-center mt-4 md:hidden">
+                <p className="text-xs text-gray-400 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                    </svg>
+                    Swipe to explore
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </p>
             </div>
         </div>
     );

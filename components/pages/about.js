@@ -1,9 +1,10 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import ImageCarousel from '../imageCarousel'
 import Image from 'next/image';
 
 export default function AboutPage() {
+    const [isTechExpanded, setIsTechExpanded] = useState(false);
     const headshot = "/images/1.png";
 
     const interests = [
@@ -77,7 +78,8 @@ export default function AboutPage() {
                             </div>
                     </div>
                         <div className="rounded-[32px] border border-white/10 bg-primary-soft/30 p-6 shadow-xl">
-                            <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+                            {/* Desktop: Show all skills */}
+                            <div className="hidden md:grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
                                 {skillBubbles.map((bubble) => (
                                     <a
                                         key={bubble.name}
@@ -99,6 +101,49 @@ export default function AboutPage() {
                                         <p className="text-[10px] font-semibold text-center leading-tight">{bubble.name}</p>
                                     </a>
                                 ))}
+                            </div>
+
+                            {/* Mobile: Expandable list */}
+                            <div className="md:hidden">
+                                <div className={`grid grid-cols-3 gap-4 transition-all duration-300 overflow-hidden ${isTechExpanded ? 'max-h-[2000px]' : 'max-h-[280px]'}`}>
+                                    {skillBubbles.map((bubble) => (
+                                        <a
+                                            key={bubble.name}
+                                            href={bubble.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-white/90 transition-transform duration-200 active:scale-95"
+                                            aria-label={bubble.name}
+                                        >
+                                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-black/30">
+                                                <Image
+                                                    src={bubble.icon}
+                                                    alt={bubble.name}
+                                                    width={28}
+                                                    height={28}
+                                                    className={bubble.invert ? "invert" : ""}
+                                                />
+                                            </div>
+                                            <p className="text-[10px] font-semibold text-center leading-tight">{bubble.name}</p>
+                                        </a>
+                                    ))}
+                                </div>
+                                
+                                {/* Expand/Collapse Button */}
+                                <button
+                                    onClick={() => setIsTechExpanded(!isTechExpanded)}
+                                    className="mt-4 w-full flex items-center justify-center gap-2 py-3 px-4 bg-secondary/20 hover:bg-secondary/30 text-secondary border border-secondary/30 rounded-xl transition-all duration-300 font-semibold text-sm"
+                                >
+                                    {isTechExpanded ? 'Show Less' : 'Show More'}
+                                    <svg 
+                                        className={`w-4 h-4 transition-transform duration-300 ${isTechExpanded ? 'rotate-180' : ''}`}
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
