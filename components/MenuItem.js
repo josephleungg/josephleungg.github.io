@@ -1,70 +1,46 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '../lib/utils';
-import { usePathname } from "next/navigation";
+import { useState } from 'react';
 
-function mapRange(inputLower, inputUpper, outputLower, outputUpper) {
-    const INPUT_RANGE = inputUpper - inputLower;
-    const OUTPUT_RANGE = outputUpper - outputLower;
-
-    return (value) =>
-        outputLower + (((value - inputLower) / INPUT_RANGE) * OUTPUT_RANGE || 0);
-}
-
-function MenuItem({ link, handleTransition }) {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const textX = useTransform(x, (latest) => latest * 0.5);
-    const textY = useTransform(y, (latest) => latest * 0.5);
-
-    const pathname = usePathname();
+function MenuItem({ link, handleTransition, isActive }) {
+    const [isHovered, setIsHovered] = useState(false);
     const MotionLink = motion(Link);
 
-    const setTransform = (item, event, x, y) => {
-        const bounds = item.getBoundingClientRect();
-        const relativeX = event.clientX - bounds.left;
-        const relativeY = event.clientY - bounds.top;
-        const xRange = mapRange(0, bounds.width, -1, 1)(relativeX);
-        const yRange = mapRange(0, bounds.height, -1, 1)(relativeY);
-        x.set(xRange * 10);
-        y.set(yRange * 10);
-    };
-
     return (
-        <motion.li
-            onPointerMove={(event) => {
-                const item = event.currentTarget;
-                setTransform(item, event, x, y);
-            }}
-            onPointerLeave={() => {
-                x.set(0);
-                y.set(0);
-            }}
-            style={{ x, y }}
-        >
+        <li>
             <MotionLink
                 onClick={(e) => handleTransition(e, link.path)}
                 href={link.path}
                 className={cn(
-                    "relative font-roboto font-medium rounded-lg text-sm md:text-base py-2 px-4 transition-all duration-500 ease-out hover:bg-menuColor",
-                    pathname === link.path ? "font-extrabold text-secondary" : "hover-text-glow"
+                    "group relative block overflow-hidden rounded-full px-4 py-2 text-xs font-medium uppercase tracking-wide transition-colors duration-300 md:text-sm",
+                    isActive ? "text-white" : "text-slate-300 hover:text-white"
                 )}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
             >
                 <motion.span
-                    style={{ x: textX, y: textY }}
-                    className="z-10 relative"
-                >
-                    {link.name}
-                </motion.span>
-                {pathname === link.path ? (
-                    <motion.div
-                        transition={{ type: "spring" }}
-                        layoutId="underline"
-                        className="absolute w-full h-full rounded-md left-0 bottom-0 bg-menuColor"
-                    />
-                ) : null}
+                    className="absolute inset-0 rounded-full bg-white/10"
+                    initial={false}
+                    animate={{
+                        opacity: isActive || isHovered ? 1 : 0,
+                        scale: isActive || isHovered ? 1 : 0.9
+                    }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                />
+                <span className="relative z-10">{link.name}</span>
+                <motion.span
+                    className="absolute inset-x-3 bottom-1 h-px rounded-full bg-gradient-to-r from-transparent via-white/70 to-transparent"
+                    initial={false}
+                    animate={{
+                        opacity: isHovered ? 1 : 0,
+                        scaleX: isHovered ? 1 : 0.5
+                    }}
+                    style={{ originX: 0.5 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                />
             </MotionLink>
-        </motion.li>
+        </li>
     );
 }
 
