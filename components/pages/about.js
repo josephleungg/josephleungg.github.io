@@ -14,33 +14,35 @@ export default function AboutPage() {
 
     const technologies = [
         // ICONS TAKEN FROM: https://devicon.dev/
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-plain.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg", "bg-white rounded-3xl"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain-wordmark.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg", "bg-white rounded-3xl"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg", ""],
+        // Format: [iconUrl, className, officialUrl]
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", "", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", "", "https://www.python.org/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-plain.svg", "", "https://www.java.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg", "", "https://www.typescriptlang.org/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg", "", "https://en.cppreference.com/w/c"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", "", "https://developer.mozilla.org/en-US/docs/Web/HTML"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", "", "https://developer.mozilla.org/en-US/docs/Web/CSS"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg", "", "https://nodejs.org/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", "", "https://react.dev/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", "", "https://nextjs.org/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg", "bg-white rounded-3xl", "https://expressjs.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain-wordmark.svg", "", "https://www.djangoproject.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg", "bg-white rounded-3xl", "https://flask.palletsprojects.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", "", "https://www.mongodb.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg", "", "https://supabase.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", "", "https://tailwindcss.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg", "", "https://www.tensorflow.org/"],
     ]
 
     const tools = [
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", "bg-white rounded-3xl"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg", ""],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/premierepro/premierepro-plain.svg", "bg-[#E298F2] rounded-xl"],
-        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", ""],
+        // Format: [iconUrl, className, officialUrl]
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", "bg-white rounded-3xl", "https://github.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", "", "https://www.linux.org/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg", "", "https://www.postman.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", "", "https://code.visualstudio.com/"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg", "", "https://www.adobe.com/products/photoshop.html"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/premierepro/premierepro-plain.svg", "bg-[#E298F2] rounded-xl", "https://www.adobe.com/products/premiere.html"],
+        ["https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", "", "https://www.figma.com/"],
     ]
 
     return(
@@ -50,8 +52,8 @@ export default function AboutPage() {
                 
                 <div className="flex flex-col md:h-screen md:w-[50%] md:items-left justify-center">
                     <h1 className="text-2xl md:text-3xl font-montserrat font-black italic text-secondary">A LITTLE BIT ABOUT ME</h1>
-                    <p className="text-justify text-lg">I&apos;m currently a third year <span className="font-bold text-tertiary">Computer Science </span> 
-                        student attending Toronto Metropolitan University! Beyond the screen, I find joy in lifting weights and 
+                    <p className="text-justify text-lg">I&apos;m currently a fourth year <span className="font-bold text-tertiary">Computer Science </span> 
+                        student attending Toronto Metropolitan University! Beyond the screen, I find joy in lifting weights, eating, and 
                         going on late night drives, I also love to binge shows and play video games whenever I have the time. 
                         My interests extend to web design and working on software that tackles meaningful real-world problems. 
                         I am always excited to continue learning, and developing myself in the technological field!</p>
@@ -83,7 +85,11 @@ export default function AboutPage() {
                     
                     <div className="flex flex-row flex-wrap justify-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
                         {technologies.map((icon, i) => (
-                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl">
+                            <div 
+                                key={i} 
+                                onClick={() => window.open(icon[2], '_blank')}
+                                className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl"
+                            >
                                 <Image src={icon[0]} alt={`Technology ${i}`} className={`${icon[1]}`} layout="intrinsic" width={50} height={50} />
                             </div>
                         ))}
@@ -98,7 +104,11 @@ export default function AboutPage() {
                     
                     <div className="flex flex-row flex-wrap h-full justify-center items-center gap-2 md:gap-8 bg-black/30 rounded-3xl p-4 md:p-8 mt-4">
                         {tools.map((icon, i) => (
-                            <div key={i} className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl">
+                            <div 
+                                key={i} 
+                                onClick={() => window.open(icon[2], '_blank')}
+                                className="cursor-pointer transform transition duration-500 hover:scale-125 hover:shadow-xl bg-black/40 p-2 md:p-4 lg:p-6 rounded-3xl"
+                            >
                                 <Image src={icon[0]} alt={`Tool ${i}`} className={`${icon[1]}`} width={50} height={50} />
                             </div>
                         ))}
