@@ -52,7 +52,7 @@ export default function AboutPage() {
                         <h1 className="text-3xl font-montserrat font-black italic text-secondary md:text-4xl">A LITTLE BIT ABOUT ME</h1>
                     </div>
                     <p className="text-justify text-base leading-relaxed text-accent/90 md:text-lg">I&apos;m currently a fourth year <span className="font-bold text-tertiary">Computer Science </span> 
-                        student attending Toronto Metropolitan University! Beyond the screen, I find joy in lifting weights, eating, and 
+                        student attending <span className="font-bold text-tertiary">Toronto Metropolitan University</span>! Beyond the screen, I find joy in lifting weights, eating, and 
                         going on late night drives, I also love to binge shows and play video games whenever I have the time. 
                         My interests extend to web design and working on software that tackles meaningful real-world problems. 
                         I am always excited to continue learning, and developing myself in the technological field!</p>

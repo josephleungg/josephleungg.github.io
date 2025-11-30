@@ -6,6 +6,7 @@ import { cn } from '../lib/utils';
 const MENU_LINKS = [
     { path: "#home", name: "Home" },
     { path: "#about", name: "About" },
+    { path: "#experience", name: "Experience" },
     { path: "#projects", name: "Projects" },
     { path: "#contact", name: "Contact" }
 ];

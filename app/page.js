@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import CycleTitle from '../components/cycleTitle'
 import AboutPage from '../components/pages/about';
+import Experience from '../components/pages/experience';
 import Projects from '../components/pages/projects';
 import Contact from '../components/pages/contact';
 
@@ -25,6 +26,11 @@ export default function Home() {
       {/* about page from components */}
       <div id="about" className="flex flex-col min-h-screen">
         <AboutPage />
+      </div>
+
+      {/* experience page from components */}
+      <div id="experience" className="flex flex-col min-h-screen">
+        <Experience />
       </div>
 
       {/* projects page from components */}
