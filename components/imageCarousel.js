@@ -1,64 +1,105 @@
 'use client';
-import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "react-feather"
+import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "react-feather";
 
-export default function Carousel({ children: slides, autoSlide = false, autoSlideInterval = 3000 }) {
-  const [curr, setCurr] = useState(0)
+export default function Carousel({
+  slides = [],
+  autoSlide = true,
+  autoSlideInterval = 3500,
+  showControls = true,
+}) {
+  const normalizedSlides = useMemo(
+    () =>
+      slides.map((slide, index) =>
+        typeof slide === "string"
+          ? { src: slide, alt: `Slide ${index + 1}` }
+          : slide
+      ),
+    [slides]
+  );
+
+  const slideCount = normalizedSlides.length;
+  const [curr, setCurr] = useState(0);
 
   const prev = () =>
-    setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1))
+    setCurr((currIndex) =>
+      slideCount === 0
+        ? 0
+        : currIndex === 0
+        ? slideCount - 1
+        : currIndex - 1
+    );
+
   const next = () =>
-    setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1))
+    setCurr((currIndex) =>
+      slideCount === 0
+        ? 0
+        : currIndex === slideCount - 1
+        ? 0
+        : currIndex + 1
+    );
 
   useEffect(() => {
-    if (!autoSlide) return
-    const slideInterval = setInterval(next, autoSlideInterval)
-    return () => clearInterval(slideInterval)
-  }, [])
+    if (!autoSlide || slideCount <= 1) return;
+    const slideInterval = setInterval(next, autoSlideInterval);
+    return () => clearInterval(slideInterval);
+  }, [autoSlide, autoSlideInterval, slideCount]);
+
+  useEffect(() => {
+    if (curr > slideCount - 1) {
+      setCurr(0);
+    }
+  }, [curr, slideCount]);
+
+  if (!slideCount) return null;
 
   return (
-    <div className="relative max-h-[60vh] w-full overflow-hidden">
+    <div className="relative overflow-hidden rounded-[32px]">
       <div
-        className="flex transition-transform ease-out duration-500"
+        className="flex transition-transform duration-[900ms] ease-[cubic-bezier(0.22,0.61,0.36,1)]"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
-        {slides.map((slide, index) => (
-          <div key={index} className="min-w-full flex justify-center">
-            <img src={slide} className="max-h-[60vh] max-w-full object-contain rounded-3xl shadow-2xl"/>
+        {normalizedSlides.map((slide, index) => (
+          <div key={index} className="relative min-w-full">
+            <img
+              src={slide.src}
+              alt={slide.alt ?? `Carousel image ${index + 1}`}
+              className="h-[420px] w-full rounded-[24px] object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
           </div>
         ))}
       </div>
 
-      {/* Navigation buttons */}
-      <div className="absolute inset-0 flex items-center justify-between p-4">
+  {showControls && slideCount > 1 && (
+      <div className="pointer-events-none absolute inset-0 hidden items-center justify-between px-4 md:flex">
         <button
           onClick={prev}
-          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+          className="pointer-events-auto rounded-full border border-white/10 bg-white/10 p-2 text-white backdrop-blur hover:bg-white/20"
         >
-          <ChevronLeft size={30} />
+          <ChevronLeft size={20} />
         </button>
         <button
           onClick={next}
-          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+          className="pointer-events-auto rounded-full border border-white/10 bg-white/10 p-2 text-white backdrop-blur hover:bg-white/20"
         >
-          <ChevronRight size={30} />
+          <ChevronRight size={20} />
         </button>
       </div>
+  )}
 
-      {/* Indicators */}
-      <div className="absolute bottom-4 right-0 left-0">
+      <div className="absolute bottom-4 left-0 right-0">
         <div className="flex items-center justify-center gap-2">
-          {slides.map((_, i) => (
+          {normalizedSlides.map((_, i) => (
             <div
               key={i}
-              className={`
-              transition-all w-3 h-3 bg-white rounded-full
-              ${curr === i ? "p-2" : "bg-opacity-50"}
-            `}
+              className={`h-1.5 rounded-full transition-all ${
+                curr === i ? "w-6 bg-white" : "w-3 bg-white/40"
+              }`}
             />
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }

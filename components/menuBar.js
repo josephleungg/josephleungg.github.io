@@ -60,43 +60,45 @@ export default function MenuBar() {
 
         const sections = MENU_LINKS.map((link) => ({
             path: link.path,
-            element: document.getElementById(link.path.replace('#', ''))
+            element: document.getElementById(link.path.replace('#', '')),
         })).filter((item) => item.element);
 
         if (!sections.length) return;
 
-        let ticking = false;
-
-        const updateActiveSection = () => {
-            const viewportCenter = window.scrollY + window.innerHeight / 2;
-            let nextSection = sections[0].path;
+        const getClosestSection = () => {
+            const scrollPos = window.scrollY + window.innerHeight * 0.35;
+            let closestPath = sections[0].path;
+            let minDistance = Infinity;
 
             sections.forEach(({ path, element }) => {
                 if (!element) return;
                 const elementTop = element.offsetTop;
-                if (viewportCenter >= elementTop - 80) {
-                    nextSection = path;
+                const distance = Math.abs(scrollPos - elementTop);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestPath = path;
                 }
             });
 
-            setActiveSection((prev) => (prev === nextSection ? prev : nextSection));
-            ticking = false;
+            setActiveSection((prev) => (prev === closestPath ? prev : closestPath));
         };
 
-        const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateActiveSection);
-                ticking = true;
+        const throttledScroll = () => {
+            if (typeof window === 'undefined') return;
+            if (window.requestAnimationFrame) {
+                window.requestAnimationFrame(getClosestSection);
+            } else {
+                getClosestSection();
             }
         };
 
-        updateActiveSection();
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener('resize', handleScroll);
+        getClosestSection();
+        window.addEventListener('scroll', throttledScroll, { passive: true });
+        window.addEventListener('resize', throttledScroll);
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('resize', handleScroll);
+            window.removeEventListener('scroll', throttledScroll);
+            window.removeEventListener('resize', throttledScroll);
         };
     }, []);
 

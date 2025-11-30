@@ -5,12 +5,13 @@ import ImageCarousel from '../imageCarousel'
 import Image from 'next/image';
 
 export default function AboutPage() {
-    const images = [
-        "/images/1.png",
-        "/images/2.png",
-        "/images/3.png",
-        "/images/4.png",
-    ]
+    const headshot = "/images/1.png";
+
+    const interests = [
+        { src: "/images/2.png", label: "Cars", alt: "Night photo of a car" },
+        { src: "/images/3.png", label: "Food", alt: "Bowl of comforting food" },
+        { src: "/images/4.png", label: "Hiking", alt: "Hiking trail view" },
+    ];
 
     const technologies = [
         // ICONS TAKEN FROM: https://devicon.dev/
@@ -48,30 +49,34 @@ export default function AboutPage() {
     return(
         <div className="font-roboto">
             {/* about me section */}
-            <div className="relative flex flex-col md:flex-row my-32 md:my-0 px-12 md:px-24 gap-24 md:gap-32 min-h-screen">
-                
-                <div className="flex flex-col md:h-screen md:w-[50%] md:items-left justify-center">
-                    <h1 className="text-2xl md:text-3xl font-montserrat font-black italic text-secondary">A LITTLE BIT ABOUT ME</h1>
-                    <p className="text-justify text-lg">I&apos;m currently a fourth year <span className="font-bold text-tertiary">Computer Science </span> 
+            <div className="relative grid min-h-screen gap-12 px-8 py-16 md:px-24 lg:grid-cols-2">
+                <div className="flex flex-col justify-center gap-6">
+                    <div className="flex flex-col gap-6 md:items-start">
+                        <div className="relative h-56 w-56 shrink-0 overflow-hidden rounded-full border border-white/20 bg-primary-soft/80 shadow-2xl md:h-64 md:w-64">
+                            <Image
+                                src={headshot}
+                                alt="Headshot of Joseph Leung"
+                                fill
+                                priority
+                                sizes="(max-width: 768px) 224px, 256px"
+                                className="object-cover"
+                            />
+                        </div>
+                        <h1 className="text-3xl font-montserrat font-black italic text-secondary md:text-4xl">A LITTLE BIT ABOUT ME</h1>
+                    </div>
+                    <p className="text-justify text-base leading-relaxed text-accent/90 md:text-lg">I&apos;m currently a fourth year <span className="font-bold text-tertiary">Computer Science </span> 
                         student attending Toronto Metropolitan University! Beyond the screen, I find joy in lifting weights, eating, and 
                         going on late night drives, I also love to binge shows and play video games whenever I have the time. 
                         My interests extend to web design and working on software that tackles meaningful real-world problems. 
                         I am always excited to continue learning, and developing myself in the technological field!</p>
                 </div>
 
-                <div className="flex md:h-screen md:w-[50%] items-center">
-                    <ImageCarousel>
-                        {images}
-                    </ImageCarousel>
+                <div className="flex flex-col justify-center">
+                    <div className="rounded-[36px] bg-gradient-to-br from-primary-soft/50 to-primary/30 p-4 shadow-2xl">
+                        <ImageCarousel slides={interests} autoSlideInterval={3200} />
+                    </div>
                 </div>
 
-                <button
-                    onClick={() => document.getElementById('skills').scrollIntoView({ behavior: 'smooth' })}
-                    className="absolute bottom-[-10%] md:bottom-0 left-1/2 transform -translate-x-1/2 mb-4 p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-                >
-                    <ChevronDown size={30} />
-                </button>
-                
             </div>
 
             {/* skills section */}
