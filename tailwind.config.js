@@ -12,23 +12,27 @@ module.exports = {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0 },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
-        flicker: 'flicker 1s infinite',
+        flicker: 'flicker 1.1s steps(1) infinite',
+        marquee: 'marquee 28s linear infinite',
       },
       fontFamily: {
-        lato: ['Lato', 'sans-serif'],
-        roboto: ['Roboto Mono', 'monospace'],
-        montserrat: ['Montserrat', 'sans-serif'],
+        grotesk: ['var(--font-grotesk)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
+        roboto: ['var(--font-roboto)', 'monospace'],
       },
       colors: {
-        primary: "#090a14", // deep obsidian background
-        "primary-soft": "#111327", // card surface / nav shell
-        secondary: "#cdb7ff", // pastel purple accent
-        tertiary: "#8bc6ff", // cool highlight to pair with purple
-        accent: "#f5f2ff", // soft off-white for text/cards
-        muted: "#737a8c", // subtle gray for borders/body copy
-        ink: "#fdfcff", // high-contrast text on dark surfaces
+        paper: "#f6f5f2", // warm off-white background
+        surface: "#ffffff", // raised card surface
+        ink: "#0f0f0f", // near-black primary text
+        muted: "#6b6b6b", // secondary text
+        line: "#e6e4de", // hairline borders
+        accent: "#ff4655", // valorant red, used sparingly
       },
     },
   },

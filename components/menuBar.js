@@ -8,6 +8,7 @@ const MENU_LINKS = [
     { path: "#about", name: "About" },
     { path: "#experience", name: "Experience" },
     { path: "#projects", name: "Projects" },
+    { path: "#life", name: "Life" },
     { path: "#contact", name: "Contact" }
 ];
 
@@ -16,55 +17,35 @@ export default function MenuBar() {
     const [activeSection, setActiveSection] = useState(MENU_LINKS[0].path);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    async function handleTransition(e, path) {
+    // Pure smooth-scroll to the target section — single page, no fade/page swap.
+    function handleTransition(e, path) {
         e.preventDefault();
-
-        const body = document.getElementById('content');
-
-        body?.classList.add('page-transition');
-        await sleep(300);
-        
-        // For hash links, scroll to the element
-        const targetId = path.substring(1); // removes the #
+        const targetId = path.substring(1);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
             targetElement.scrollIntoView({ behavior: 'smooth' });
         }
         setActiveSection(path);
-        setIsMobileMenuOpen(false); // Close mobile menu on navigation
+        setIsMobileMenuOpen(false);
         if (typeof window !== 'undefined') {
             window.history.replaceState(null, '', path);
         }
-        
-        await sleep(300);
-
-        body?.classList.remove('page-transition');
     }
 
     useEffect(() => {
-        const handleScrollState = () => {
-            setIsScrolled(window.scrollY > 12);
-        };
-
+        const handleScrollState = () => setIsScrolled(window.scrollY > 12);
         handleScrollState();
         window.addEventListener('scroll', handleScrollState);
-
-        return () => {
-            window.removeEventListener('scroll', handleScrollState);
-        };
+        return () => window.removeEventListener('scroll', handleScrollState);
     }, []);
 
+    // Scroll-spy: highlight the section closest to the top-third of the viewport.
     useEffect(() => {
         if (typeof window === 'undefined') return;
 
-        const sections = MENU_LINKS.map((link) => ({
-            path: link.path,
-            element: document.getElementById(link.path.replace('#', '')),
-        })).filter((item) => item.element);
+        const sections = MENU_LINKS
+            .map((link) => ({ path: link.path, element: document.getElementById(link.path.replace('#', '')) }))
+            .filter((item) => item.element);
 
         if (!sections.length) return;
 
@@ -75,8 +56,7 @@ export default function MenuBar() {
 
             sections.forEach(({ path, element }) => {
                 if (!element) return;
-                const elementTop = element.offsetTop;
-                const distance = Math.abs(scrollPos - elementTop);
+                const distance = Math.abs(scrollPos - element.offsetTop);
                 if (distance < minDistance) {
                     minDistance = distance;
                     closestPath = path;
@@ -86,19 +66,11 @@ export default function MenuBar() {
             setActiveSection((prev) => (prev === closestPath ? prev : closestPath));
         };
 
-        const throttledScroll = () => {
-            if (typeof window === 'undefined') return;
-            if (window.requestAnimationFrame) {
-                window.requestAnimationFrame(getClosestSection);
-            } else {
-                getClosestSection();
-            }
-        };
+        const throttledScroll = () => window.requestAnimationFrame(getClosestSection);
 
         getClosestSection();
         window.addEventListener('scroll', throttledScroll, { passive: true });
         window.addEventListener('resize', throttledScroll);
-
         return () => {
             window.removeEventListener('scroll', throttledScroll);
             window.removeEventListener('resize', throttledScroll);
@@ -106,25 +78,26 @@ export default function MenuBar() {
     }, []);
 
     return (
-        <nav className="sticky top-8 z-50 mt-4 flex w-full justify-center px-4">
+        <nav className="sticky top-4 z-40 mt-4 flex w-full justify-center px-4">
             <div
                 className={cn(
-                    "flex w-full max-w-4xl items-center justify-between gap-4 rounded-full border px-6 py-3 transition-all duration-300",
+                    "flex w-full max-w-3xl items-center justify-between gap-4 rounded-full border px-5 py-2.5 transition-all duration-300",
                     isScrolled
-                        ? "bg-slate-950/80 border-white/15 shadow-2xl shadow-black/20 backdrop-blur-xl"
-                        : "bg-slate-900/50 border-white/5 backdrop-blur-md"
+                        ? "border-line bg-paper/85 shadow-[0_8px_30px_rgba(15,15,15,0.06)] backdrop-blur-xl"
+                        : "border-transparent bg-paper/50 backdrop-blur-md"
                 )}
             >
                 <a
                     href="#home"
                     onClick={(e) => handleTransition(e, "#home")}
-                    className="text-[11px] font-semibold uppercase tracking-[0.4em] text-slate-200 hover:text-white transition-colors"
+                    data-cursor
+                    className="font-grotesk text-sm font-bold tracking-tight text-ink transition-colors hover:text-accent"
                 >
-                    Joseph Leung
+                    JL<span className="text-accent">.</span>
                 </a>
 
-                {/* Desktop Menu */}
-                <ul className="hidden md:flex flex-1 items-center justify-end gap-1 text-xs md:text-sm">
+                {/* Desktop menu */}
+                <ul className="hidden items-center gap-1 md:flex">
                     {MENU_LINKS.map((link) => (
                         <MenuItem
                             key={link.path}
@@ -135,65 +108,46 @@ export default function MenuBar() {
                     ))}
                 </ul>
 
-                {/* Mobile Hamburger Button */}
+                {/* Mobile hamburger */}
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
+                    data-cursor
+                    className="flex h-8 w-8 flex-col items-center justify-center space-y-1.5 md:hidden"
                     aria-label="Toggle menu"
                 >
-                    <span
-                        className={cn(
-                            "block w-6 h-0.5 bg-slate-200 transition-all duration-300",
-                            isMobileMenuOpen && "rotate-45 translate-y-2"
-                        )}
-                    ></span>
-                    <span
-                        className={cn(
-                            "block w-6 h-0.5 bg-slate-200 transition-all duration-300",
-                            isMobileMenuOpen && "opacity-0"
-                        )}
-                    ></span>
-                    <span
-                        className={cn(
-                            "block w-6 h-0.5 bg-slate-200 transition-all duration-300",
-                            isMobileMenuOpen && "-rotate-45 -translate-y-2"
-                        )}
-                    ></span>
+                    <span className={cn("block h-0.5 w-6 bg-ink transition-all duration-300", isMobileMenuOpen && "translate-y-2 rotate-45")} />
+                    <span className={cn("block h-0.5 w-6 bg-ink transition-all duration-300", isMobileMenuOpen && "opacity-0")} />
+                    <span className={cn("block h-0.5 w-6 bg-ink transition-all duration-300", isMobileMenuOpen && "-translate-y-2 -rotate-45")} />
                 </button>
             </div>
 
-            {/* Mobile Menu Dropdown */}
+            {/* Mobile dropdown */}
             <div
                 className={cn(
-                    "md:hidden absolute top-20 left-4 right-4 rounded-3xl border overflow-hidden transition-all duration-300 origin-top",
-                    isScrolled
-                        ? "bg-slate-950/95 border-white/15 shadow-2xl shadow-black/20 backdrop-blur-xl"
-                        : "bg-slate-900/95 border-white/5 backdrop-blur-md",
-                    isMobileMenuOpen
-                        ? "opacity-100 scale-y-100 translate-y-0"
-                        : "opacity-0 scale-y-0 -translate-y-4 pointer-events-none"
+                    "absolute left-4 right-4 top-16 origin-top overflow-hidden rounded-3xl border border-line bg-paper/95 shadow-[0_8px_30px_rgba(15,15,15,0.08)] backdrop-blur-xl transition-all duration-300 md:hidden",
+                    isMobileMenuOpen ? "scale-y-100 opacity-100" : "pointer-events-none -translate-y-4 scale-y-0 opacity-0"
                 )}
             >
-                <ul className="flex flex-col py-4">
+                <ul className="flex flex-col py-3">
                     {MENU_LINKS.map((link, index) => (
                         <li
                             key={link.path}
-                            className="transition-all duration-300"
                             style={{
-                                transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms',
+                                transitionDelay: isMobileMenuOpen ? `${index * 40}ms` : '0ms',
                                 opacity: isMobileMenuOpen ? 1 : 0,
-                                transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-20px)'
+                                transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-16px)',
+                                transition: 'all 0.3s ease',
                             }}
                         >
                             <a
                                 onClick={(e) => handleTransition(e, link.path)}
                                 href={link.path}
                                 className={cn(
-                                    "group relative block overflow-hidden rounded-full px-6 py-3 mx-4 text-sm font-medium uppercase tracking-wide transition-colors duration-300",
-                                    activeSection === link.path ? "text-white bg-white/10" : "text-slate-300 hover:text-white hover:bg-white/5"
+                                    "mx-3 block rounded-full px-5 py-2.5 font-roboto text-xs uppercase tracking-[0.2em] transition-colors duration-300",
+                                    activeSection === link.path ? "bg-ink/5 text-ink" : "text-muted hover:bg-ink/5 hover:text-ink"
                                 )}
                             >
-                                <span className="relative z-10">{link.name}</span>
+                                {link.name}
                             </a>
                         </li>
                     ))}

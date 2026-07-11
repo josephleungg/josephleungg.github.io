@@ -1,48 +1,60 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import CycleTitle from '../components/cycleTitle'
+import React from 'react';
+import CycleTitle from '../components/cycleTitle';
 import AboutPage from '../components/pages/about';
 import Experience from '../components/pages/experience';
 import Projects from '../components/pages/projects';
+import Life from '../components/pages/life';
 import Contact from '../components/pages/contact';
 
 export default function Home() {
-  
   return (
     <div>
-      {/* intro section */}
-      <div id="home" className="flex flex-col min-h-screen text-xl md:text-2xl lg:text-3xl space-y-6 justify-center items-center">
+      {/* intro / hero */}
+      <section
+        id="home"
+        className="relative flex min-h-screen flex-col justify-center px-6 sm:px-8 md:px-24 lg:px-32"
+      >
+        <p className="eyebrow mb-5 sm:mb-6">Toronto, ON · Portfolio ’25</p>
 
-          <div className="">
-            <p className="">Hey, I&apos;m <span className="text-secondary font-bold">Joseph</span><span className="animate-flicker">_</span></p>
-          </div>
+        <h1 className="font-grotesk text-4xl font-bold leading-[1] tracking-tight text-ink sm:text-6xl md:text-8xl lg:text-9xl">
+          Hey, I&apos;m
+          <br />
+          <span className="text-ink">Joseph Leung</span>
+          <span className="animate-flicker text-accent">.</span>
+        </h1>
 
-          <div className="">
-            <CycleTitle />
-          </div>
+        <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-base sm:mt-8 sm:text-lg md:text-2xl">
+          <span className="font-inter text-ink">I&apos;m a</span>
+          <CycleTitle />
+        </div>
 
-      </div>
+        {/* scroll cue */}
+        <div className="absolute bottom-8 left-6 flex items-center gap-3 sm:left-8 md:bottom-10 md:left-24 lg:left-32">
+          <span className="eyebrow">Scroll</span>
+          <span className="h-8 w-px bg-line md:h-10" />
+        </div>
+      </section>
 
-      {/* about page from components */}
-      <div id="about" className="flex flex-col min-h-screen">
+      <section id="about" className="min-h-screen">
         <AboutPage />
-      </div>
+      </section>
 
-      {/* experience page from components */}
-      <div id="experience" className="flex flex-col min-h-screen">
+      <section id="experience" className="min-h-screen">
         <Experience />
-      </div>
+      </section>
 
-      {/* projects page from components */}
-      <div id="projects" className="flex flex-col min-h-screen">
+      <section id="projects" className="min-h-screen">
         <Projects />
-      </div>
+      </section>
 
-      {/* contact page from components */}
-      <div id="contact" className="flex flex-col min-h-screen">
+      <section id="life" className="min-h-screen">
+        <Life />
+      </section>
+
+      <section id="contact">
         <Contact />
-      </div>
-
-  </div>
+      </section>
+    </div>
   );
 }

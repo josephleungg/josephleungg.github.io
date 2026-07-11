@@ -1,155 +1,134 @@
 'use client';
-import React, { useState } from 'react';
-import ImageCarousel from '../imageCarousel'
+import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { skills } from '../../lib/data';
+
+const interests = [
+    { src: "/images/2-web.jpg", label: "Late-night drives", alt: "Night photo of a car" },
+    { src: "/images/3-web.jpg", label: "Good food", alt: "Bowl of comforting food" },
+    { src: "/images/4-web.jpg", label: "Hiking", alt: "Hiking trail view" },
+];
 
 export default function AboutPage() {
-    const [isTechExpanded, setIsTechExpanded] = useState(false);
-    const headshot = "/images/1.png";
+    return (
+        <div className="flex flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 md:px-24 lg:px-32">
+            <motion.p
+                className="eyebrow mb-4"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5 }}
+            >
+                01 — About
+            </motion.p>
 
-    const interests = [
-        { src: "/images/2.png", label: "Cars", alt: "Night photo of a car" },
-        { src: "/images/3.png", label: "Food", alt: "Bowl of comforting food" },
-        { src: "/images/4.png", label: "Hiking", alt: "Hiking trail view" },
-    ];
+            <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+                {/* left: heading + blurb */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <h2 className="font-grotesk text-3xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+                        A little bit<br />about me
+                    </h2>
+                    <p className="mt-8 max-w-xl font-inter text-base leading-relaxed text-muted md:text-lg">
+                        I&apos;m currently a fourth year <span className="font-medium text-ink">Computer Science</span> student
+                        attending <span className="font-medium text-ink">Toronto Metropolitan University</span>. Beyond the
+                        screen, I find joy in lifting weights, eating, and going on late night drives — I also love to binge
+                        shows and play video games whenever I have the time. My interests extend to web design and building
+                        software that tackles meaningful real-world problems. I&apos;m always excited to keep learning and
+                        developing myself in the tech field.
+                    </p>
 
-    const skillBubbles = [
-        { name: "Python", href: "https://www.python.org/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", size: 130, x: "38%", y: "28%" },
-        { name: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", size: 120, x: "62%", y: "22%" },
-        { name: "Java", href: "https://www.java.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", size: 115, x: "24%", y: "42%" },
-        { name: "React.js", href: "https://react.dev/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", size: 150, x: "50%", y: "45%" },
-        { name: "Next.js", href: "https://nextjs.org/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", size: 125, x: "73%", y: "40%", invert: true },
-        { name: "Express.js", href: "https://expressjs.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", size: 110, x: "20%", y: "20%", invert: true },
-        { name: "Spring Boot", href: "https://spring.io/projects/spring-boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg", size: 105, x: "30%", y: "64%" },
-        { name: "Flask", href: "https://flask.palletsprojects.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg", size: 100, x: "10%", y: "33%", invert: true },
-        { name: "DJango", href: "https://www.djangoproject.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain-wordmark.svg", size: 120, x: "78%", y: "68%", invert: true },
-        { name: "React Native", href: "https://reactnative.dev/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", size: 110, x: "65%", y: "62%" },
-        { name: "TailwindCSS", href: "https://tailwindcss.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", size: 95, x: "82%", y: "25%" },
-        { name: "MongoDB", href: "https://www.mongodb.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", size: 100, x: "15%", y: "58%" },
-        { name: "PostgreSQL", href: "https://www.postgresql.org/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", size: 100, x: "48%", y: "75%" },
-        { name: "SQL", href: "https://www.w3schools.com/sql/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", size: 90, x: "35%", y: "80%" },
-        { name: "Postman", href: "https://www.postman.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg", size: 90, x: "84%", y: "55%" },
-        { name: "GitHub Actions", href: "https://github.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", size: 95, x: "58%", y: "78%", invert: true },
-        { name: "Red Hat OCP", href: "https://www.redhat.com/en/technologies/cloud-computing/openshift", icon: "https://www.vectorlogo.zone/logos/redhat/redhat-icon.svg", size: 115, x: "88%", y: "12%" },
-        { name: "Azure", href: "https://azure.microsoft.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg", size: 105, x: "12%", y: "12%" },
-    ];
-
-    return(
-        <div className="font-roboto">
-            {/* about me section */}
-            <div className="relative grid min-h-screen gap-12 px-8 pt-16 md:px-24 lg:grid-cols-2">
-                <div className="flex flex-col justify-center gap-6">
-                    <div className="flex flex-col gap-6 md:items-start">
-                        <div className="relative h-56 w-56 shrink-0 overflow-hidden rounded-full border border-white/20 bg-primary-soft/80 shadow-2xl md:h-64 md:w-64">
-                            <Image
-                                src={headshot}
-                                alt="Headshot of Joseph Leung"
-                                fill
-                                priority
-                                sizes="(max-width: 768px) 224px, 256px"
-                                className="object-cover"
-                            />
-                        </div>
-                        <h1 className="text-3xl font-montserrat font-black italic text-secondary md:text-4xl">A LITTLE BIT ABOUT ME</h1>
+                    {/* quick facts */}
+                    <div className="mt-10 grid max-w-md grid-cols-2 gap-6 border-t border-line pt-8">
+                        {[
+                            { k: "Based in", v: "Toronto, ON" },
+                            { k: "Focus", v: "Full-Stack Dev" },
+                            { k: "School", v: "TMU · CS" },
+                            { k: "Currently", v: "Open to work" },
+                        ].map((f) => (
+                            <div key={f.k}>
+                                <p className="font-roboto text-[10px] uppercase tracking-[0.25em] text-muted">{f.k}</p>
+                                <p className="mt-1 font-grotesk text-base font-medium text-ink">{f.v}</p>
+                            </div>
+                        ))}
                     </div>
-                    <p className="text-justify text-base leading-relaxed text-accent/90 md:text-lg">I&apos;m currently a fourth year <span className="font-bold text-tertiary">Computer Science </span> 
-                        student attending <span className="font-bold text-tertiary">Toronto Metropolitan University</span>! Beyond the screen, I find joy in lifting weights, eating, and 
-                        going on late night drives, I also love to binge shows and play video games whenever I have the time. 
-                        My interests extend to web design and working on software that tackles meaningful real-world problems. 
-                        I am always excited to continue learning, and developing myself in the technological field!</p>
-                </div>
+                </motion.div>
 
-                <div className="flex flex-col justify-center">
-                    <div className="rounded-[36px] bg-gradient-to-br from-primary-soft/50 to-primary/30 p-4 shadow-2xl">
-                        <ImageCarousel slides={interests} autoSlideInterval={3200} />
+                {/* right: headshot */}
+                <motion.div
+                    className="relative mx-auto w-full max-w-sm"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                    <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface">
+                        <Image
+                            src="/images/1-web.jpg"
+                            alt="Headshot of Joseph Leung"
+                            fill
+                            priority
+                            sizes="(max-width: 768px) 100vw, 384px"
+                            className="object-cover"
+                        />
                     </div>
-                </div>
-                
+                    <span className="absolute -bottom-3 -right-3 rounded-full border border-line bg-paper px-4 py-2 font-roboto text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm">
+                        that&apos;s me →
+                    </span>
+                </motion.div>
             </div>
 
-            {/* skills section */}
-            <section id="skills" className="relative px-6 pb-32 md:px-16 lg:px-24">
-                <div className="relative overflow-hidden rounded-[48px] border border-white/10 bg-primary-soft/30 px-6 py-12 shadow-2xl backdrop-blur-xl lg:px-12 lg:py-16">
-                    <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-                        <div className="flex flex-col justify-center gap-6">
-                            <div>
-                                <p className="text-xs font-semibold uppercase tracking-[0.6em] text-muted">Languages & Tools</p>
-                                <h2 className="mt-2 text-3xl font-montserrat font-black text-secondary lg:text-4xl">SOME TECH THAT I USE</h2>
-                            </div>
-                    </div>
-                        <div className="rounded-[32px] border border-white/10 bg-primary-soft/30 p-6 shadow-xl">
-                            {/* Desktop: Show all skills */}
-                            <div className="hidden md:grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-                                {skillBubbles.map((bubble) => (
-                                    <a
-                                        key={bubble.name}
-                                        href={bubble.href}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-white/90 transition-transform duration-200 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
-                                        aria-label={bubble.name}
-                                    >
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-black/30">
-                                            <Image
-                                                src={bubble.icon}
-                                                alt={bubble.name}
-                                                width={28}
-                                                height={28}
-                                                className={bubble.invert ? "invert" : ""}
-                                            />
-                                        </div>
-                                        <p className="text-[10px] font-semibold text-center leading-tight">{bubble.name}</p>
-                                    </a>
-                                ))}
-                            </div>
+            {/* interests */}
+            <div className="mt-20 grid gap-4 sm:grid-cols-3">
+                {interests.map((it, i) => (
+                    <motion.div
+                        key={it.label}
+                        className="group relative aspect-[3/2] overflow-hidden rounded-xl border border-line bg-surface"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-60px" }}
+                        transition={{ duration: 0.5, delay: i * 0.08 }}
+                    >
+                        <Image
+                            src={it.src}
+                            alt={it.alt}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                        <p className="absolute bottom-3 left-4 font-roboto text-[11px] uppercase tracking-[0.2em] text-white">
+                            {it.label}
+                        </p>
+                    </motion.div>
+                ))}
+            </div>
 
-                            {/* Mobile: Expandable list */}
-                            <div className="md:hidden">
-                                <div className={`grid grid-cols-3 gap-4 transition-all duration-300 overflow-hidden ${isTechExpanded ? 'max-h-[2000px]' : 'max-h-[280px]'}`}>
-                                    {skillBubbles.map((bubble) => (
-                                        <a
-                                            key={bubble.name}
-                                            href={bubble.href}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-white/90 transition-transform duration-200 active:scale-95"
-                                            aria-label={bubble.name}
-                                        >
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-black/30">
-                                                <Image
-                                                    src={bubble.icon}
-                                                    alt={bubble.name}
-                                                    width={28}
-                                                    height={28}
-                                                    className={bubble.invert ? "invert" : ""}
-                                                />
-                                            </div>
-                                            <p className="text-[10px] font-semibold text-center leading-tight">{bubble.name}</p>
-                                        </a>
-                                    ))}
-                                </div>
-                                
-                                {/* Expand/Collapse Button */}
-                                <button
-                                    onClick={() => setIsTechExpanded(!isTechExpanded)}
-                                    className="mt-4 w-full flex items-center justify-center gap-2 py-3 px-4 bg-secondary/20 hover:bg-secondary/30 text-secondary border border-secondary/30 rounded-xl transition-all duration-300 font-semibold text-sm"
-                                >
-                                    {isTechExpanded ? 'Show Less' : 'Show More'}
-                                    <svg 
-                                        className={`w-4 h-4 transition-transform duration-300 ${isTechExpanded ? 'rotate-180' : ''}`}
-                                        fill="none" 
-                                        stroke="currentColor" 
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
+            {/* skills marquee */}
+            <div className="mt-20">
+                <p className="eyebrow mb-6">Languages &amp; tools I use</p>
+                <div className="relative overflow-hidden border-y border-line py-5">
+                    <div className="flex w-max animate-marquee gap-8 whitespace-nowrap">
+                        {[...skills, ...skills].map((s, i) => (
+                            <span
+                                key={i}
+                                className="font-grotesk text-lg font-medium text-ink/80 md:text-2xl"
+                            >
+                                {s}
+                                <span className="ml-8 text-accent">/</span>
+                            </span>
+                        ))}
                     </div>
+                    {/* fade edges */}
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-paper to-transparent" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-paper to-transparent" />
                 </div>
-            </section>
-
+            </div>
         </div>
     );
-};
+}
