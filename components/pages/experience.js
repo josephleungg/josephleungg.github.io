@@ -35,7 +35,7 @@ function CompanyLogo({ exp }) {
 }
 
 export default function Experience() {
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(-1);
 
     return (
         <div className="flex flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 md:px-24 lg:px-32">
@@ -48,7 +48,10 @@ export default function Experience() {
             </p>
 
             {/* Timeline */}
-            <div className="relative mt-14 pl-6 md:pl-10">
+            <div
+                className="relative mt-14 pl-6 md:pl-10"
+                onMouseLeave={() => setActive(-1)}
+            >
                 {/* vertical rail */}
                 <span className="absolute left-0 top-2 h-full w-px bg-line md:left-2" />
 

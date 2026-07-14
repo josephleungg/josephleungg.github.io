@@ -34,18 +34,31 @@ function ProjectLinks({ project }) {
 }
 
 function PreviewCard({ project }) {
+    const openGithub = () => window.open(project.github, '_blank', 'noopener,noreferrer');
+
     return (
-        <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_20px_60px_rgba(15,15,15,0.08)]">
+        <div
+            role="link"
+            tabIndex={0}
+            data-cursor
+            onClick={openGithub}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), openGithub())}
+            className="group cursor-pointer overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_20px_60px_rgba(15,15,15,0.08)] transition-colors hover:border-ink/30"
+        >
             <div className="relative aspect-[16/10] w-full bg-paper">
                 <Image
+                    key={project.image}
                     src={project.image}
                     alt={project.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 460px"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute left-4 top-4 rounded-full border border-line bg-paper/90 px-3 py-1 font-roboto text-[10px] uppercase tracking-[0.15em] text-ink backdrop-blur">
                     {project.finished ? 'Completed' : 'In Development'}
+                </span>
+                <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-ink/90 px-3 py-1 font-roboto text-[10px] uppercase tracking-[0.15em] text-paper opacity-0 backdrop-blur transition-opacity duration-300 group-hover:opacity-100">
+                    View project ↗
                 </span>
             </div>
             <div className="p-6">
@@ -67,7 +80,7 @@ function PreviewCard({ project }) {
 }
 
 export default function Projects() {
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(-1);
     const [openMobile, setOpenMobile] = useState(-1);
 
     return (
@@ -80,7 +93,7 @@ export default function Projects() {
                 A selection of featured projects — hover a title to preview it.
             </p>
 
-            <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_460px] lg:items-start">
+            <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_460px] lg:items-start" onMouseLeave={() => setActive(-1)}>
                 {/* left: the list */}
                 <div className="flex flex-col">
                     {projects.map((project, i) => {
@@ -137,17 +150,28 @@ export default function Projects() {
                 {/* right: sticky preview (desktop only) */}
                 <div className="hidden lg:block">
                     <div className="sticky top-28">
-                        <AnimatePresence mode="wait">
+                        {active === -1 ? (
+                            <motion.div
+                                key="empty"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.2 }}
+                                className="flex aspect-[16/10] w-full items-center justify-center rounded-2xl border border-dashed border-line"
+                            >
+                                <p className="font-roboto text-[11px] uppercase tracking-[0.2em] text-muted">
+                                    Hover a title to preview
+                                </p>
+                            </motion.div>
+                        ) : (
                             <motion.div
                                 key={active}
-                                initial={{ opacity: 0, y: 12 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -12 }}
-                                transition={{ duration: 0.25 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.2 }}
                             >
                                 <PreviewCard project={projects[active]} />
                             </motion.div>
-                        </AnimatePresence>
+                        )}
                     </div>
                 </div>
             </div>

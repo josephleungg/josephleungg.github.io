@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 const links = [
     { label: "LinkedIn", handle: "in/josephleung1", href: "https://www.linkedin.com/in/josephleung1/" },
     { label: "GitHub", handle: "@josephleungg", href: "https://github.com/josephleungg" },
-    { label: "Email", handle: "leung.joseph2@gmail.com", href: "mailto:leung.joseph2@gmail.com" },
 ];
 
 export default function Contact() {
