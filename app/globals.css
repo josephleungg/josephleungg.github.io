@@ -1,94 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* offset for the sticky nav when anchor-scrolling */
 }
 
-/* Hide scrollbar for horizontal scrolling */
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
-}
-
-#content {
-  transition-property: opacity, filter;
-  transition-timing-function: ease-in-out;
-  transition-duration: 300ms;
-}
-
-li {
-  transition: all 1s var(--elastic-out);
-}
-
-@layer base {
-  :root {
-    --elastic-out: linear(
-      0,
-      0.2178 2.1%,
-      1.1144 8.49%,
-      1.2959 10.7%,
-      1.3463 11.81%,
-      1.3705 12.94%,
-      1.3726,
-      1.3643 14.48%,
-      1.3151 16.2%,
-      1.0317 21.81%,
-      0.941 24.01%,
-      0.8912 25.91%,
-      0.8694 27.84%,
-      0.8698 29.21%,
-      0.8824 30.71%,
-      1.0122 38.33%,
-      1.0357,
-      1.046 42.71%,
-      1.0416 45.7%,
-      0.9961 53.26%,
-      0.9839 57.54%,
-      0.9853 60.71%,
-      1.0012 68.14%,
-      1.0056 72.24%,
-      0.9981 86.66%,
-      1
-    );
+/* Hide native cursor only on precise pointers (desktop); touch keeps the OS cursor */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
   }
+}
+
+/* Hide scrollbar for horizontal scrolling regions */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 @layer utilities {
-
-  .card:hover {
-    transform: rotateY(180deg);
-    transform-style: preserve-3d;
-  }
-  
-  .card-back {
-    transform: rotateY(180deg);
+  /* Selection uses the accent so it feels intentional */
+  ::selection {
+    background: #ff4655;
+    color: #ffffff;
   }
 
-  .page-transition {
-    opacity: 0;
-    filter: blur(8px);
+  /* thin uppercase mono eyebrow used across sections */
+  .eyebrow {
+    font-family: var(--font-roboto), monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    font-size: 0.7rem;
+    color: #6b6b6b;
   }
 
-  .hover-text-glow:hover {
-    animation: pulse 1s infinite;
-    /* text-decoration:underline; */
+  /* animated underline for links */
+  .link-underline {
+    background-image: linear-gradient(#ff4655, #ff4655);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
   }
-
-  @keyframes pulse{
-    /* red pulsing animation */
-    0% { transform: scale(1); }
-    50% { transform: scale(1); color: #e61c39; }
-    100% { transform: scale(1); color: white; }
+  .link-underline:hover {
+    background-size: 100% 1px;
   }
-
 }
