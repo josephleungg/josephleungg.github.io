@@ -93,7 +93,7 @@ export default function MenuBar() {
                     data-cursor
                     className="font-grotesk text-sm font-bold tracking-tight text-ink transition-colors hover:text-accent"
                 >
-                    Joe<span className="text-accent"></span>
+                    JL<span className="text-accent"></span>
                 </a>
 
                 {/* Desktop menu */}
