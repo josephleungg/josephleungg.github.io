@@ -26,9 +26,6 @@ const robotoMono = Roboto_Mono({
 export const metadata = {
   title: 'My personal portfolio',
   description: 'Personal Portfolio',
-  icons: {
-    icon: '/images/favicon.ico',
-  },
   openGraph: {
     images: [],
   },

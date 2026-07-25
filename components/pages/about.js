@@ -37,7 +37,7 @@ export default function AboutPage() {
                     <p className="mt-8 max-w-xl font-inter text-base leading-relaxed text-muted md:text-lg">
                         I&apos;m currently a fourth year <span className="font-medium text-ink">Computer Science</span> student
                         attending <span className="font-medium text-ink">Toronto Metropolitan University</span>. Beyond the
-                        screen, I find joy in lifting weights, eating, and going on late night drives — I also love to binge
+                        screen, I find joy in lifting weights, eating, and going on late night drives. I also love to binge
                         shows and play video games whenever I have the time. My interests extend to web design and building
                         software that tackles meaningful real-world problems. I&apos;m always excited to keep learning and
                         developing myself in the tech field.
