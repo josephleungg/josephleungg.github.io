@@ -18,7 +18,7 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    05 — Contact
+                    Contact
                 </motion.p>
 
                 <motion.h2

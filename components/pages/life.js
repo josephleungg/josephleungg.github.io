@@ -36,7 +36,7 @@ const reveal = {
 export default function Life() {
     return (
         <div className="flex flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 md:px-24 lg:px-32">
-            <p className="eyebrow mb-4">04 — Off the clock</p>
+            <p className="eyebrow mb-4">Off the clock</p>
             <h2 className="font-grotesk text-3xl font-bold tracking-tight text-ink md:text-5xl">
                 A little life beyond code
             </h2>

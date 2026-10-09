@@ -20,7 +20,7 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5 }}
             >
-                01 — About
+                About
             </motion.p>
 
             <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
