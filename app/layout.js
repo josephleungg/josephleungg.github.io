@@ -26,10 +26,12 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://www.jleungg.com'),
   title: 'My personal portfolio',
   description: 'Personal Portfolio',
   openGraph: {
-    images: [],
+    type: 'website',
+    url: '/',
   },
 };
 
