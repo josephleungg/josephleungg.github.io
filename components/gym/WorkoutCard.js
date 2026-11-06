@@ -134,7 +134,7 @@ function WorkoutDetails({ workout }) {
             initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="grid h-full min-h-0 gap-5 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-0"
+            className="grid min-h-0 flex-1 gap-5 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-0"
         >
             <section className={`scrollbar-hide flex min-h-0 flex-col gap-2.5 md:overflow-y-auto md:pr-5 md:pb-5 ${FADE_MASK}`}>
                 {workout.photo && (
@@ -211,5 +211,10 @@ export default function WorkoutCard() {
         );
     }
 
-    return <WorkoutDetails key={selected.id} workout={selected} />;
+    return (
+        <div className="flex h-full min-h-0 flex-col">
+            <span className={`${LABEL_CLASS} mb-3`}>In the gym</span>
+            <WorkoutDetails key={selected.id} workout={selected} />
+        </div>
+    );
 }

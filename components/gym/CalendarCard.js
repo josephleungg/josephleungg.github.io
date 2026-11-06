@@ -104,7 +104,7 @@ export default function CalendarCard() {
 
     return (
         <div className="flex h-full min-h-0 flex-col">
-            <span className={`${LABEL_CLASS} mb-3`}>Calendar</span>
+            <span className={`${LABEL_CLASS} mb-3`}>Gym Calendar</span>
 
             {status === 'loading' && <div aria-hidden className="min-h-40 flex-1 animate-pulse rounded-xl bg-line/60" />}
             {status === 'failed' && <p className="font-inter text-sm text-muted">Calendar is unavailable right now.</p>}
