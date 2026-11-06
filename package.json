@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "hevy:setup": "npm install --no-save --no-package-lock playwright sharp @aws-sdk/client-s3 && npx playwright install chromium",
+    "hevy:dry": "node --env-file=.env.local scripts/scrape-hevy.mjs --dry-run",
+    "hevy:sync": "node --env-file=.env.local scripts/scrape-hevy.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

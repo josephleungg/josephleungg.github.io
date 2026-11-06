@@ -37,3 +37,8 @@ next-env.d.ts
 
 # local tooling config (dev-server preview settings, machine-specific)
 .claude
+
+
+# Local Hevy dry-run output, public data lives in R2
+/public/hevy.json
+/public/photos/

@@ -1,0 +1,43 @@
+name: Hevy sync
+
+on:
+  schedule:
+    # 12:07 am Toronto time. The odd minute avoids the busy top of the hour.
+    - cron: '7 0 * * *'
+      timezone: 'America/Toronto'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hevy-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+
+      - name: Install scraper tools
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts playwright sharp @aws-sdk/client-s3
+          npm rebuild sharp
+          npx playwright install --with-deps chromium
+
+      - name: Sync workouts
+        env:
+          HEVY_USERNAME: ${{ secrets.HEVY_USERNAME }}
+          HEVY_PASSWORD: ${{ secrets.HEVY_PASSWORD }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: node scripts/scrape-hevy.mjs
