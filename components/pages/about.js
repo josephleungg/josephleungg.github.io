@@ -5,7 +5,7 @@ import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } 
 import { skills } from '../../lib/data';
 
 const interests = [
-    { src: "/images/2-web.jpg", label: "Late-night drives", alt: "Night photo of a car" },
+    { src: "/images/car.jpg", label: "Late-night drives", alt: "Blue Toyota GR Supra parked in front of a cherry tree", position: "center 70%" },
     { src: "/images/3-web.jpg", label: "Good food", alt: "Bowl of comforting food" },
     { src: "/images/4-web.jpg", label: "Hiking", alt: "Hiking trail view" },
 ];
@@ -40,6 +40,7 @@ function InterestPanel({ interest, index }) {
                         fill
                         sizes="(max-width: 768px) 100vw, 60vw"
                         className="object-cover"
+                        style={{ objectPosition: interest.position }}
                     />
                 </motion.div>
             </motion.div>
