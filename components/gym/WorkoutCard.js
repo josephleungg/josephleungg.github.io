@@ -1,7 +1,7 @@
 'use client';
 import React, { useId, useState } from 'react';
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { photoUrl, useHevy } from './hevy-data';
 import { LABEL_CLASS, formatDate, formatRest, formatTime } from './format';
 
@@ -15,10 +15,10 @@ function buildStats(workout) {
         { label: 'Volume', value: workout.volumeLbs.toLocaleString('en-US'), unit: 'lbs' },
         { label: 'Sets', value: workout.sets },
         { label: 'Exercises', value: workout.exercises.length },
-        workout.avgHeartRate && { label: 'Avg. heart rate', value: workout.avgHeartRate, unit: 'bpm' },
+        workout.avgHeartRate && { label: 'Heart rate', value: workout.avgHeartRate, unit: 'bpm' },
         workout.calories && { label: 'Calories', value: workout.calories, unit: 'kcal' },
-        { label: 'Personal records', value: workout.records },
-        { label: 'Yearly records', value: workout.yearlyRecords },
+        { label: 'PRs', value: workout.records },
+        { label: 'Yearly PRs', value: workout.yearlyRecords },
     ].filter(Boolean);
 }
 
@@ -125,14 +125,20 @@ function ExerciseRow({ exercise, isOpen, onToggle }) {
 }
 
 function WorkoutDetails({ workout }) {
-    const [openIndex, setOpenIndex] = useState(0);
+    const [openIndex, setOpenIndex] = useState(-1);
+    const reduceMotion = useReducedMotion();
     const exerciseCount = workout.exercises.length;
 
     return (
-        <div className="grid h-full min-h-0 gap-5 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-0">
-            <section className={`scrollbar-hide flex min-h-0 flex-col gap-3 md:overflow-y-auto md:pr-5 md:pb-5 ${FADE_MASK}`}>
+        <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="grid h-full min-h-0 gap-5 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-0"
+        >
+            <section className={`scrollbar-hide flex min-h-0 flex-col gap-2.5 md:overflow-y-auto md:pr-5 md:pb-5 ${FADE_MASK}`}>
                 {workout.photo && (
-                    <div className="relative h-24 shrink-0 overflow-hidden rounded-xl bg-line">
+                    <div className="relative h-56 shrink-0 overflow-hidden rounded-xl bg-line lg:h-auto lg:min-h-40 lg:flex-1">
                         <Image
                             src={photoUrl(workout.photo)}
                             alt={`Photo from the ${workout.title} workout`}
@@ -154,11 +160,11 @@ function WorkoutDetails({ workout }) {
                     {workout.description && <p className="mt-1.5 font-inter text-sm text-muted">{workout.description}</p>}
                 </div>
 
-                <dl className="grid grid-cols-2 border-t border-line">
+                <dl className="grid shrink-0 grid-cols-2 border-t border-line min-[1400px]:grid-cols-3">
                     {buildStats(workout).map((stat) => (
-                        <div key={stat.label} className="border-b border-line py-1.5 pr-3">
+                        <div key={stat.label} className="border-b border-line py-1 pr-3">
                             <dt className="font-inter text-xs text-muted">{stat.label}</dt>
-                            <dd className="mt-0.5 font-grotesk text-lg font-medium text-ink">
+                            <dd className="mt-0.5 font-grotesk text-base font-medium text-ink">
                                 {stat.value}
                                 {stat.unit && <span className="ml-1 font-inter text-xs font-normal text-muted">{stat.unit}</span>}
                             </dd>
@@ -185,7 +191,7 @@ function WorkoutDetails({ workout }) {
                     ))}
                 </ul>
             </section>
-        </div>
+        </motion.div>
     );
 }
 

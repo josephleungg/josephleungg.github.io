@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import ScrollFade from '../ScrollFade';
 import { skills } from '../../lib/data';
 
 const interests = [
@@ -54,60 +55,49 @@ function InterestPanel({ interest, index }) {
 export default function AboutPage() {
     return (
         <div className="flex flex-col justify-center px-6 pb-24 pt-24 sm:px-8 sm:pb-28 md:px-24 lg:px-32">
-            <motion.p
-                className="eyebrow mb-4"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5 }}
-            >
-                About
-            </motion.p>
+            <ScrollFade>
+                <p className="eyebrow mb-4">About</p>
+            </ScrollFade>
 
             <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
                 {/* left: heading + blurb */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <h2 className="font-grotesk text-3xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
-                        A little bit<br />about me
-                    </h2>
-                    <p className="mt-8 max-w-xl font-inter text-base leading-relaxed text-muted md:text-lg">
-                        I&apos;m currently a fourth year <span className="font-medium text-ink">Computer Science</span> student
-                        attending <span className="font-medium text-ink">Toronto Metropolitan University</span>. Beyond the
-                        screen, I find joy in lifting weights, eating, and going on late night drives. I also love to binge
-                        shows and play video games whenever I have the time. My interests extend to web design and building
-                        software that tackles meaningful real-world problems. I&apos;m always excited to keep learning and
-                        developing myself in the tech field.
-                    </p>
+                <div>
+                    <ScrollFade>
+                        <h2 className="font-grotesk text-3xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+                            A little bit<br />about me
+                        </h2>
+                    </ScrollFade>
+                    <ScrollFade>
+                        <p className="mt-8 max-w-xl font-inter text-base leading-relaxed text-muted md:text-lg">
+                            I&apos;m currently a fourth year <span className="font-medium text-ink">Computer Science</span> student
+                            attending <span className="font-medium text-ink">Toronto Metropolitan University</span>. Beyond the
+                            screen, I find joy in lifting weights, eating, and going on late night drives. I also love to binge
+                            shows and play video games whenever I have the time. My interests extend to web design and building
+                            software that tackles meaningful real-world problems. I&apos;m always excited to keep learning and
+                            developing myself in the tech field.
+                        </p>
+                    </ScrollFade>
 
                     {/* quick facts */}
-                    <div className="mt-10 grid max-w-md grid-cols-2 gap-6 border-t border-line pt-8">
-                        {[
-                            { k: "Based in", v: "Toronto, ON" },
-                            { k: "Focus", v: "Full-Stack Dev" },
-                            { k: "School", v: "TMU · CS" },
-                            { k: "Currently", v: "Open to work" },
-                        ].map((f) => (
-                            <div key={f.k}>
-                                <p className="font-roboto text-[10px] uppercase tracking-[0.25em] text-muted">{f.k}</p>
-                                <p className="mt-1 font-grotesk text-base font-medium text-ink">{f.v}</p>
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
+                    <ScrollFade>
+                        <div className="mt-10 grid max-w-md grid-cols-2 gap-6 border-t border-line pt-8">
+                            {[
+                                { k: "Based in", v: "Toronto, ON" },
+                                { k: "Focus", v: "Full-Stack Dev" },
+                                { k: "School", v: "TMU · CS" },
+                                { k: "Currently", v: "Open to work" },
+                            ].map((f) => (
+                                <div key={f.k}>
+                                    <p className="font-roboto text-[10px] uppercase tracking-[0.25em] text-muted">{f.k}</p>
+                                    <p className="mt-1 font-grotesk text-base font-medium text-ink">{f.v}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </ScrollFade>
+                </div>
 
                 {/* right: headshot */}
-                <motion.div
-                    className="relative mx-auto w-full max-w-sm"
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                >
+                <ScrollFade className="relative mx-auto w-full max-w-sm">
                     <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface">
                         <Image
                             src="/images/1-web.jpg"
@@ -121,7 +111,7 @@ export default function AboutPage() {
                     <span className="absolute -bottom-3 -right-3 rounded-full border border-line bg-paper px-4 py-2 font-roboto text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm">
                         that&apos;s me →
                     </span>
-                </motion.div>
+                </ScrollFade>
             </div>
 
             {/* interests */}
@@ -132,7 +122,7 @@ export default function AboutPage() {
             </div>
 
             {/* skills marquee */}
-            <div className="mt-20">
+            <ScrollFade className="mt-20">
                 <p className="eyebrow mb-6">Languages &amp; tools I use</p>
                 <div className="relative overflow-hidden border-y border-line py-5">
                     <div className="flex w-max animate-marquee gap-8 whitespace-nowrap">
@@ -150,7 +140,7 @@ export default function AboutPage() {
                     <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-paper to-transparent" />
                     <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-paper to-transparent" />
                 </div>
-            </div>
+            </ScrollFade>
         </div>
     );
 }

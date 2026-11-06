@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import ScrollFade from '../ScrollFade';
 import { HevyProvider } from '../gym/hevy-data';
 import WorkoutCard from '../gym/WorkoutCard';
 import CalendarCard from '../gym/CalendarCard';
@@ -61,13 +62,19 @@ function HobbyCard({ fan = 0, delay = 0, className, children }) {
 export default function Hobbies() {
     return (
         <div className="flex min-h-screen flex-col px-6 pb-16 pt-24 sm:px-8 md:px-24 lg:h-screen lg:min-h-[44rem] lg:px-32">
-            <p className="eyebrow mb-3">Hobbies</p>
-            <h2 className="font-grotesk text-3xl font-bold tracking-tight text-ink md:text-5xl">
-                Off the clock
-            </h2>
-            <p className="mt-3 max-w-lg font-inter text-muted">
-                What I&apos;m listening to, driving, playing, and up to lately.
-            </p>
+            <ScrollFade>
+                <p className="eyebrow mb-3">Hobbies</p>
+            </ScrollFade>
+            <ScrollFade>
+                <h2 className="font-grotesk text-3xl font-bold tracking-tight text-ink md:text-5xl">
+                    Off the clock
+                </h2>
+            </ScrollFade>
+            <ScrollFade>
+                <p className="mt-3 max-w-lg font-inter text-muted">
+                    What I&apos;m listening to, driving, playing, and up to lately.
+                </p>
+            </ScrollFade>
 
             <HevyProvider>
                 <div
@@ -120,7 +127,7 @@ export default function Hobbies() {
                                     <span className="text-2xl">{s.emoji}</span>
                                     <div>
                                         <p className="font-grotesk text-base font-semibold text-ink">{s.name}</p>
-                                        <p className="font-inter text-xs text-muted">{s.note}</p>
+                                        {s.note && <p className="font-inter text-xs text-muted">{s.note}</p>}
                                     </div>
                                 </div>
                             ))}

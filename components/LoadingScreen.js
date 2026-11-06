@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react';
 /**
  * Minimalist loading overlay with a grey progress bar.
  * Progress is tied to real work: images loading, fonts ready, and window.load.
- * Eases toward 100%, fades out, then unmounts. Never hangs (hard 4s fallback).
+ * Eases toward 100%, fades out, then unmounts. Never hangs (hard MAX_WAIT_MS fallback).
  */
+const MAX_WAIT_MS = 1200;
+const FADE_MS = 300;
+
 export default function LoadingScreen() {
     const [progress, setProgress] = useState(0);
     const [done, setDone] = useState(false);
@@ -20,7 +23,8 @@ export default function LoadingScreen() {
 
         const readTarget = () => {
             // Weight three signals: images, fonts, window load.
-            const imgs = Array.from(document.images || []);
+            // Lazy images only load when scrolled to, so waiting on them would never finish.
+            const imgs = Array.from(document.images || []).filter((img) => img.loading !== 'lazy');
             const total = imgs.length;
             const loaded = imgs.filter((img) => img.complete).length;
             const imgRatio = total === 0 ? 1 : loaded / total;
@@ -38,7 +42,7 @@ export default function LoadingScreen() {
             setProgress(100);
             setDone(true);
             // unmount after the fade
-            setTimeout(() => setMounted(false), 650);
+            setTimeout(() => setMounted(false), FADE_MS);
         };
 
         const tick = () => {
@@ -61,7 +65,7 @@ export default function LoadingScreen() {
         window.addEventListener('load', onLoad);
 
         // Hard safety net so the overlay can never trap the user.
-        const failsafe = setTimeout(finish, 4000);
+        const failsafe = setTimeout(finish, MAX_WAIT_MS);
 
         return () => {
             if (raf) cancelAnimationFrame(raf);
@@ -74,7 +78,8 @@ export default function LoadingScreen() {
 
     return (
         <div
-            className={`fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-paper transition-opacity duration-700 ${done ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
+            style={{ transitionDuration: `${FADE_MS}ms` }}
+            className={`fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-paper transition-opacity ${done ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
         >
             <div className="flex w-64 flex-col items-center gap-5 px-6">
                 <div className="font-grotesk text-2xl font-bold tracking-tight text-ink">

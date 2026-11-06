@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import CycleTitle from '../components/cycleTitle';
+import HeroArt from '../components/HeroArt';
 import AboutPage from '../components/pages/about';
 import Experience from '../components/pages/experience';
 import Projects from '../components/pages/projects';
@@ -15,6 +16,7 @@ export default function Home() {
         id="home"
         className="snap-section relative flex min-h-screen flex-col justify-center px-6 sm:px-8 md:px-24 lg:px-32"
       >
+        <HeroArt />
         <p className="eyebrow mb-5 sm:mb-6">Toronto, ON</p>
 
         <h1 className="font-grotesk text-4xl font-bold leading-[1] tracking-tight text-ink sm:text-6xl md:text-8xl lg:text-9xl">
