@@ -4,7 +4,18 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem; /* offset for the sticky nav when anchor-scrolling */
+  scroll-snap-type: y proximity; /* snaps on gentle scrolls, never traps fast/long scrolls */
+  scrollbar-width: none; /* ScrollIndicator replaces the native scrollbar */
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 body {

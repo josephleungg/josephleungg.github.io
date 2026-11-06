@@ -4,7 +4,7 @@ import CycleTitle from '../components/cycleTitle';
 import AboutPage from '../components/pages/about';
 import Experience from '../components/pages/experience';
 import Projects from '../components/pages/projects';
-import Life from '../components/pages/life';
+import Hobbies from '../components/pages/hobbies';
 import Contact from '../components/pages/contact';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
       {/* intro / hero */}
       <section
         id="home"
-        className="relative flex min-h-screen flex-col justify-center px-6 sm:px-8 md:px-24 lg:px-32"
+        className="snap-section relative flex min-h-screen flex-col justify-center px-6 sm:px-8 md:px-24 lg:px-32"
       >
         <p className="eyebrow mb-5 sm:mb-6">Toronto, ON</p>
 
@@ -30,23 +30,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="min-h-screen">
+      <section id="about" className="snap-section min-h-screen">
         <AboutPage />
       </section>
 
-      <section id="experience" className="min-h-screen">
+      <section id="experience" className="snap-section min-h-screen">
         <Experience />
       </section>
 
-      <section id="projects" className="min-h-screen">
+      <section id="projects" className="snap-section min-h-screen">
         <Projects />
       </section>
 
-      <section id="life" className="min-h-screen">
-        <Life />
+      <section id="hobbies" className="snap-section min-h-screen">
+        <Hobbies />
       </section>
 
-      <section id="contact">
+      <section id="contact" className="snap-section">
         <Contact />
       </section>
     </div>

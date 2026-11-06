@@ -1,7 +1,7 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { skills } from '../../lib/data';
 
 const interests = [
@@ -10,9 +10,49 @@ const interests = [
     { src: "/images/4-web.jpg", label: "Hiking", alt: "Hiking trail view" },
 ];
 
+// Wipes open with scroll while the photo drifts inside its frame; hover widens the panel.
+function InterestPanel({ interest, index }) {
+    const panelRef = useRef(null);
+    const reduceMotion = useReducedMotion();
+    const { scrollYProgress } = useScroll({
+        target: panelRef,
+        offset: ['start end', 'end start'],
+    });
+
+    const wipeStart = 0.05 + index * 0.05;
+    const hidden = useTransform(scrollYProgress, [wipeStart, wipeStart + 0.3], [100, 0]);
+    const clipPath = useMotionTemplate`inset(${hidden}% 0% 0% 0% round 16px)`;
+    const drift = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+
+    return (
+        <figure
+            ref={panelRef}
+            className="group min-w-0 md:basis-0 md:grow md:transition-[flex-grow] md:duration-700 md:ease-[cubic-bezier(0.22,1,0.36,1)] md:hover:grow-[2]"
+        >
+            <motion.div
+                style={reduceMotion ? { borderRadius: 16 } : { clipPath }}
+                className="relative h-64 overflow-hidden md:h-[26rem]"
+            >
+                <motion.div style={reduceMotion ? undefined : { y: drift }} className="absolute -inset-y-[12%] inset-x-0">
+                    <Image
+                        src={interest.src}
+                        alt={interest.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                        className="object-cover"
+                    />
+                </motion.div>
+            </motion.div>
+            <figcaption className="mt-3 font-roboto text-[11px] uppercase tracking-[0.2em] text-muted transition-colors duration-300 group-hover:text-ink">
+                {interest.label}
+            </figcaption>
+        </figure>
+    );
+}
+
 export default function AboutPage() {
     return (
-        <div className="flex flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 md:px-24 lg:px-32">
+        <div className="flex flex-col justify-center px-6 pb-24 pt-24 sm:px-8 sm:pb-28 md:px-24 lg:px-32">
             <motion.p
                 className="eyebrow mb-4"
                 initial={{ opacity: 0, y: 12 }}
@@ -84,28 +124,9 @@ export default function AboutPage() {
             </div>
 
             {/* interests */}
-            <div className="mt-20 grid gap-4 sm:grid-cols-3">
+            <div className="mt-20 flex flex-col gap-6 md:flex-row md:gap-3">
                 {interests.map((it, i) => (
-                    <motion.div
-                        key={it.label}
-                        className="group relative aspect-[3/2] overflow-hidden rounded-xl border border-line bg-surface"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-60px" }}
-                        transition={{ duration: 0.5, delay: i * 0.08 }}
-                    >
-                        <Image
-                            src={it.src}
-                            alt={it.alt}
-                            fill
-                            sizes="(max-width: 640px) 100vw, 33vw"
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                        <p className="absolute bottom-3 left-4 font-roboto text-[11px] uppercase tracking-[0.2em] text-white">
-                            {it.label}
-                        </p>
-                    </motion.div>
+                    <InterestPanel key={it.label} interest={it} index={i} />
                 ))}
             </div>
 

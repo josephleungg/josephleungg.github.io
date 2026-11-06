@@ -3,6 +3,8 @@ import { Space_Grotesk, Inter, Roboto_Mono } from 'next/font/google';
 import MenuBar from '../components/menuBar';
 import CustomCursor from '../components/CustomCursor';
 import LoadingScreen from '../components/LoadingScreen';
+import ScrollIndicator from '../components/ScrollIndicator';
+import ScrollArt from '../components/ScrollArt';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -39,13 +41,15 @@ export default function RootLayout({ children }) {
 
         <LoadingScreen />
         <CustomCursor />
+        <ScrollIndicator />
 
         <div className="fixed z-40 min-w-full">
           <MenuBar />
         </div>
 
-        <div id="content" className="min-h-screen w-full max-w-screen">
-          {children}
+        <div id="content" className="relative min-h-screen w-full max-w-screen">
+          <ScrollArt />
+          <div className="relative z-10">{children}</div>
         </div>
 
       </body>

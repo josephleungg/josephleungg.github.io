@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import MenuItem from './MenuItem';
 import { cn } from '../lib/utils';
 
@@ -8,14 +9,40 @@ const MENU_LINKS = [
     { path: "#about", name: "About" },
     { path: "#experience", name: "Experience" },
     { path: "#projects", name: "Projects" },
-    { path: "#life", name: "Life" },
+    { path: "#hobbies", name: "Hobbies" },
     { path: "#contact", name: "Contact" }
 ];
+
+const LOGO_EASE = [0.22, 1, 0.36, 1];
+
+// Letters fold away from the end of the word inward, and unfold from the start outward.
+function LogoLetters({ text, expanded, startDelay, instant }) {
+    return text.split('').map((letter, i) => (
+        <motion.span
+            key={i}
+            initial={false}
+            animate={{
+                width: expanded ? 'auto' : 0,
+                opacity: expanded ? 1 : 0,
+                y: expanded ? 0 : 6,
+            }}
+            transition={{
+                duration: instant ? 0 : 0.45,
+                ease: LOGO_EASE,
+                delay: instant ? 0 : startDelay + (expanded ? i : text.length - 1 - i) * 0.025,
+            }}
+            className="inline-block overflow-hidden whitespace-pre"
+        >
+            {letter}
+        </motion.span>
+    ));
+}
 
 export default function MenuBar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState(MENU_LINKS[0].path);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const reduceMotion = useReducedMotion();
 
     // Pure smooth-scroll to the target section — single page, no fade/page swap.
     function handleTransition(e, path) {
@@ -91,9 +118,15 @@ export default function MenuBar() {
                     href="#home"
                     onClick={(e) => handleTransition(e, "#home")}
                     data-cursor
+                    aria-label="Joseph Leung, back to top"
                     className="font-grotesk text-sm font-bold tracking-tight text-ink transition-colors hover:text-accent"
                 >
-                    JL<span className="text-accent"></span>
+                    <span aria-hidden className="flex">
+                        J
+                        <LogoLetters text="oseph " expanded={!isScrolled} startDelay={0} instant={reduceMotion} />
+                        L
+                        <LogoLetters text="eung" expanded={!isScrolled} startDelay={0.05} instant={reduceMotion} />
+                    </span>
                 </a>
 
                 {/* Desktop menu */}
