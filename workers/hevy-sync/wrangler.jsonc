@@ -1,0 +1,17 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "hevy-sync",
+	"main": "src/index.js",
+	"compatibility_date": "2026-10-19",
+	"compatibility_flags": ["nodejs_compat"],
+	"workers_dev": false,
+	"upload_source_maps": true,
+	"observability": { "enabled": true },
+	"browser": { "binding": "BROWSER" },
+	"images": { "binding": "IMAGES" },
+	"r2_buckets": [{ "binding": "BUCKET", "bucket_name": "jleungg-hevy" }],
+	"triggers": {
+		// Cron runs on UTC, so both 12:07 am Toronto offsets are listed and the Worker skips the wrong one.
+		"crons": ["7 4 * * *", "7 5 * * *"]
+	}
+}
